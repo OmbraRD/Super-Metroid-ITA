@@ -1,0 +1,7 @@
+﻿  LunarDLL.cpp
+  decomp.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 11 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  decomp.vcxproj -> D:\Romhacking\Super Metroid SNES\tools\Lunar Compress\decompress\x64\Release\decomp.exe
