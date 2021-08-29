@@ -21,5 +21,6 @@ macro introText(line, ...)
             endif
             !a #= !a+1
         endif
+        cleartable
     endif
 endmacro

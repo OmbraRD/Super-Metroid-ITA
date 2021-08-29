@@ -23,7 +23,8 @@ echo Extracting Uncompressed Graphics...
 %DD% skip=458752 count=16384 if=%ROM% of=%GFX%\070000_menu_font.bin bs=1 2>NUL
 %DD% skip=864768 count=4096 if=%ROM% of=%GFX%\0D3200_msg_boxes.bin bs=1 2>NUL
 %DD% skip=1589248 count=1024 if=%ROM% of=%GFX%\184000_self_destruct_timer.bin bs=1 2>NUL
-%DD% skip=1769472 count=1536 if=%ROM% of=%GFX%\1B0000_suit_menu.bin bs=1 2>NUL
+%DD% skip=1769472 count=16384 if=%ROM% of=%GFX%\1B0000_suit_menu.bin bs=1 2>NUL
+%DD% skip=1785856 count=8192 if=%ROM% of=%GFX%\1B4000_map.bin bs=1 2>NUL
 %DD% skip=1825280 count=1024 if=%ROM% of=%GFX%\1BDA00_self_destruct_font.bin bs=1 2>NUL
 
 rem ----------------------------------------------------------------------------
@@ -54,6 +55,7 @@ move palette.tpl %GFX%\0B6C76_planet_zebes.tpl 1>NUL
 
 rem ----------------------------------------------------------------------------
 echo Extracting Uncompressed Tilemaps...
+%DD% skip=45376 count=320 if=%ROM% of=%TILEMAP%\00B140_menu_map.tilemap bs=1 2>NUL
 %DD% skip=46090 count=44 if=%ROM% of=%TILEMAP%\menu\00B40A_menu_SAMUS_DATA.tilemap bs=1 2>NUL
 %DD% skip=46134 count=32 if=%ROM% of=%TILEMAP%\menu\00B436_menu_SAMUS_A.tilemap bs=1 2>NUL
 %DD% skip=46166 count=32 if=%ROM% of=%TILEMAP%\menu\00B456_menu_SAMUS_B.tilemap bs=1 2>NUL
@@ -67,14 +69,14 @@ echo Extracting Uncompressed Tilemaps...
 %DD% skip=46318 count=10 if=%ROM% of=%TILEMAP%\menu\00B4EE_menu_EXIT.tilemap bs=1 2>NUL
 %DD% skip=46328 count=60 if=%ROM% of=%TILEMAP%\menu\00B4F8_menu_DATA_COPY_MODE.tilemap bs=1 2>NUL
 %DD% skip=46388 count=64 if=%ROM% of=%TILEMAP%\menu\00B534_menu_DATA_CLEAR_MODE.tilemap bs=1 2>NUL
-%DD% skip=46452 count=64 if=%ROM% of=%TILEMAP%\menu\00B574_menu_CLEAR_WHICH_DATA.tilemap bs=1 2>NUL
+%DD% skip=46452 count=64 if=%ROM% of=%TILEMAP%\menu\00B574_menu_COPY_WHICH_DATA.tilemap bs=1 2>NUL
 %DD% skip=46486 count=50 if=%ROM% of=%TILEMAP%\menu\00B596_menu_COPY_SAMUS_TO_WHERE.tilemap bs=1 2>NUL
 %DD% skip=46536 count=58 if=%ROM% of=%TILEMAP%\menu\00B5C8_menu_COPY_SAMUS_TO_SAMUS.tilemap bs=1 2>NUL
 %DD% skip=46594 count=24 if=%ROM% of=%TILEMAP%\menu\00B602_menu_IS_THIS_OK.tilemap bs=1 2>NUL
 %DD% skip=46618 count=16 if=%ROM% of=%TILEMAP%\menu\00B61A_menu_YES.tilemap bs=1 2>NUL
 %DD% skip=46634 count=16 if=%ROM% of=%TILEMAP%\menu\00B62A_menu_NO.tilemap bs=1 2>NUL
 %DD% skip=46650 count=32 if=%ROM% of=%TILEMAP%\menu\00B63A_menu_COPY_COMPLETED.tilemap bs=1 2>NUL
-%DD% skip=46682 count=34 if=%ROM% of=%TILEMAP%\menu\00B65A_menu_COPY_WHICH_DATA.tilemap bs=1 2>NUL
+%DD% skip=46682 count=34 if=%ROM% of=%TILEMAP%\menu\00B65A_menu_CLEAR_WHICH_DATA.tilemap bs=1 2>NUL
 %DD% skip=46746 count=64 if=%ROM% of=%TILEMAP%\menu\00B69A_menu_CLEAR_SAMUS_A.tilemap bs=1 2>NUL
 %DD% skip=46810 count=64 if=%ROM% of=%TILEMAP%\menu\00B6DA_menu_DATA_CLEARED.tilemap bs=1 2>NUL
 

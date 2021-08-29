@@ -8,10 +8,10 @@ lorom
 ; YES/NO Highlight
 org $858510
     ;ldy #$0040 ; YES Selected
-    ldy.w #Yes-#YesNo
+    ldy.w SelYes-YesNo
 org $858518
     ;ldy #$0080 ; NO Selected
-    ldy.w #No-#YesNo
+    ldy.w SelNo-YesNo
 org $85851b
     ldx #$100 ; Screen Position
     lda #$20 ; Amount of tiles
@@ -104,7 +104,7 @@ org $85869b
     dw #SaveCompleted
     dw $8436
     dw $8289
-    dw #ReserveTank
+    dw #ReserveTankFirst
     dw $8436
     dw $8289
     dw #GravitySuit
@@ -196,7 +196,7 @@ org $8594bf
 SaveCompleted:
 
 org $8594ff
-ReserveTank:
+ReserveTankFirst:
 
 org $85953f
 GravitySuit:
@@ -213,8 +213,8 @@ org $859581 ; NOT USED!
 YesNo:
 
 org $8595c1
-Yes:
+SelYes:
     incbin "../tilemaps/0295C1_msg_boxes_save_yes.tilemap"
 org $859601
-No:
+SelNo:
     incbin "../tilemaps/029601_msg_boxes_save_no.tilemap"

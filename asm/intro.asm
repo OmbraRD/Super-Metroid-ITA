@@ -7,7 +7,7 @@ lorom
 
 org $8ba0ff
     dw #PresentsPointers
-    
+
 ; Pointers
 org $8ba079
     PresentsPointers:
@@ -17,8 +17,8 @@ org $8ba079
     dw $0008,#Frame4
     dw $0008,#Frame5
     dw $0008,#Frame6
-    dw $002d,#Frame7
-    dw $9dd6,#Frame8
+    dw $0008,#Frame7
+    dw $002d,#Frame8
 
 ; Sprite Data
 org $8c8a46
@@ -108,8 +108,8 @@ org $8c8a46
 ;org $8c8b6c
     Frame8:
     db $10,$00
-    db $18,$00,$00,$b7,$33 ; S
-    db $18,$00,$f8,$a7,$33 ; S
+    db $18,$00,$00,$77,$33 ; A
+    db $18,$00,$f8,$67,$33 ; A
     db $10,$00,$00,$b8,$33 ; T
     db $10,$00,$f8,$a8,$33 ; T
     db $08,$00,$00,$9b,$33 ; N
@@ -164,9 +164,15 @@ org $8b98a3
 org $8bf760
 ;; Check and replace char for accented ones
 CheckAccentedChar:
-    ; If char value is over tile $30, it is accented.
+    ; If char value is over tile $2030, it may be intro and accented.
     cmp #$2030
-    bcs IsAccented
+    bcs MayBeAccented
+    jmp Continue
+    
+    ; If char value is less than $2100, it is the intro and accented.
+    MayBeAccented:
+    cmp #$20ff
+    bmi IsAccented
     jmp Continue
 
     IsAccented:
@@ -242,67 +248,66 @@ org $8cc383
 IntroText1:
     dw $ae43 ; Function Pointer
     dw $0001,$0101,$d683
-    %introText(4, 'I',' ','F','I','R','S','T',' ','B','A','T','T','L','E','D',' ','T','H','E',' ','M','E','T','R','O','I','D','S')
-    %introText(6, 'O','N',' ','P','L','A','N','E','T',' ','Z','E','B','E','S','.',' ','I','T',' ','W','A','S',' ','T','H','E','R','E')
-    %introText(8, 'T','H','A','T',' ','I',' ','F','O','I','L','E','D',' ','T','H','E',' ','P','L','A','N','S',' ','O','F')
-    %introText(10, 'T','H','E',' ','S','P','A','C','E',' ','P','I','R','A','T','E',' ','L','E','A','D','E','R')
-    %introText(12, 'M','O','T','H','E','R',' ','B','R','A','I','N',' ','T','O',' ','U','S','E',' ','T','H','E')
-    %introText(14, 'C','R','E','A','T','U','R','E','S',' ','T','O',' ','A','T','T','A','C','K')
-    %introText(16, 'G','A','L','A','C','T','I','C',' ','C','I','V','I','L','I','Z','A','T','I','O','N','.','.','.')
+    %introText(4, 'I','L',' ','P','R','I','M','O',' ','S','C','O','N','T','R','O',' ','C','O','N',' ','I',' ','M','E','T','R','O','I','D')
+    %introText(6, 'F','U',' ','S','U','L',' ','P','I','A','N','E','T','A',' ','Z','E','B','E','S','.')
+    %introText(8, 'L','i',' ','S','V','E','N','T','A','I',' ','I',' ','P','I','A','N','I',' ','D','I',' ','M','O','T','H','E','R')
+    %introText(10, 'B','R','A','I','N','.',' ','L','E','A','D','E','R',' ','D','E','I',' ','P','I','R','A','T','I')
+    %introText(12, 'S','P','A','Z','I','A','L','I','.',' ','I','N','T','E','N','T','A',' ','A',' ','S','F','R','U','T','T','A','R','E')
+    %introText(14, 'L','E',' ','C','R','E','A','T','U','R','E',' ','C','O','N','T','R','O',' ','A','L','T','R','E')
+    %introText(16, 'C','I','V','I','L','T','a',' ','G','A','L','A','T','T','I','C','H','E','.','.','.')
     dw $ae5b
     dw $9698
 
 IntroText2:
     dw $ae79 ; Function Pointer
     dw $0001,$0101,$d683
-    %introText(4, 'I',' ','N','E','X','T',' ','F','O','U','G','H','T',' ','T','H','E',' ','M','E','T','R','O','I','D','S',' ','O','N')
-    %introText(6, 'T','H','E','I','R',' ','H','O','M','E','W','O','R','L','D',',',' ','S','R','3','8','8','.',' ','I')
-    %introText(8, 'C','O','M','P','L','E','T','E','L','Y',' ','E','R','A','D','I','C','A','T','E','D',' ','T','H','E','M')
-    %introText(10, 'E','X','C','E','P','T',' ','F','O','R',' ','A',' ','L','A','R','V','A',',',' ','W','H','I','C','H')
-    %introText(12, 'A','F','T','E','R',' ','H','A','T','C','H','I','N','G',' ','F','O','L','L','O','W','E','D',' ','M','E')
-    %introText(14, 'L','I','K','E',' ','A',' ','C','O','N','F','U','S','E','D',' ','C','H','I','L','D','.','.','.')
+    %introText(4, 'S','U','C','C','E','S','S','I','V','A','M','E','N','T','E',' ','L','E',' ','C','O','M','B','A','T','T','E','I')
+    %introText(6, 'S','U',' ','S','R','3','8','8',',',' ','L','O','R','O',' ','P','I','A','N','E','T','A',' ','N','A','T','A','L','E','.')
+    %introText(8, 'L','E',' ','E','S','T','I','N','S','I',' ','A','D',' ','E','C','C','E','Z','I','O','N','E',' ','D','I')
+    %introText(10, 'U','N','A',' ','L','A','R','V','A',' ','L','A',' ','Q','U','A','L','E',',',' ','D','O','P','O',' ','L','A')
+    %introText(12, 'S','C','H','I','U','S','A',',',' ','M','I',' ','S','E','G','U','i',' ','C','O','M','E',' ','U','N')
+    %introText(14, 'B','I','M','B','O',' ','C','O','N','F','U','S','O','.','.','.')
     dw $ae91
     dw $9698
 
 IntroText3:
     dw $b074 ; Function Pointer
     dw $0001,$0101,$d683
-    %introText(4, 'I',' ','P','E','R','S','O','N','A','L','L','Y',' ','D','E','L','I','V','E','R','E','D',' ','I','T',' ','T','O')
-    %introText(6, 'T','H','E',' ','G','A','L','A','C','T','I','C',' ','R','E','S','E','A','R','C','H',' ','S','T','A','T','I','O','N')
-    %introText(8, 'A','T',' ','C','E','R','E','S',' ','S','O',' ','S','C','I','E','N','T','I','S','T','S',' ','C','O','U','L','D')
-    %introText(10, 'S','T','U','D','Y',' ','I','T','S',' ','E','N','E','R','G','Y',' ','P','R','O','D','U','C','I','N','G')
-    %introText(12, 'Q','U','A','L','I','T','I','E','S','.','.','.')
+    %introText(4, 'L','O',' ','C','O','N','S','E','G','N','A','I',' ','P','E','R','S','O','N','A','L','M','E','N','T','E')
+    %introText(6, 'A','G','L','I',' ','S','C','I','E','N','Z','I','A','T','I',' ','D','E','L')
+    %introText(8, 'L','A','B','O','R','A','T','O','R','I','O',' ','D','I',' ','R','I','C','E','R','C','A')
+    %introText(10, 'G','A','L','A','T','T','I','C','A',' ','P','E','R',' ','S','T','U','D','I','A','R','N','E')
+    %introText(12, 'L','E',' ','Q','U','A','L','I','T','a',' ','E','N','E','R','G','E','T','I','C','H','E','.','.','.')
     dw $b08c
     dw $9698
 
 IntroText4:
     dw $b0b3 ; Function Pointer
     dw $0001,$0101,$d683
-    %introText(4, 'T','H','E',' ','S','C','I','E','N','T','I','S','T','S','`',' ','F','I','N','D','I','N','G','S',' ','W','E','R','E')
-    %introText(6, 'A','S','T','O','U','N','D','I','N','G','!',' ','T','H','E','Y',' ','D','I','S','C','O','V','E','R','E','D')
-    %introText(8, 'T','H','A','T',' ','T','H','E',' ','P','O','W','E','R','S',' ','O','F',' ','T','H','E')
-    %introText(10, 'M','E','T','R','O','I','D',' ','M','I','G','H','T',' ','B','E',' ','H','A','R','N','E','S','S','E','D')
-    %introText(12, 'F','O','R',' ','T','H','E',' ','G','O','O','D',' ','O','F',' ','C','I','V','I','L','I','Z','A','T','I','O','N','!')
+    %introText(4, 'F','E','C','E','R','O',' ','U','N','A',' ','S','C','O','P','E','R','T','A')
+    %introText(6, 'S','O','R','P','R','E','N','D','E','N','T','E','!',' ','L','A',' ','S','U','A')
+    %introText(8, 'E','N','E','R','G','I','A',' ','P','O','T','E','V','A',' ','E','S','S','E','R','E')
+    %introText(10, 'S','F','R','U','T','T','A','T','A',' ','P','E','R',' ','I','L',' ','B','E','N','E')
+    %introText(12, 'D','I',' ','T','U','T','T','I','!')
     dw $b0cb
     dw $9698
 
 IntroText5:
     dw $b19b ; Function Pointer
     dw $0001,$0101,$d683
-    %introText(4, 'S','A','T','I','S','F','I','E','D',' ','T','H','A','T',' ','A','L','L',' ','W','A','S',' ','W','E','L','L',',')
-    %introText(6, 'I',' ','L','E','F','T',' ','T','H','E',' ','S','T','A','T','I','O','N',' ','T','O',' ','S','E','E','K',' ','A')
-    %introText(8, 'N','E','W',' ','B','O','U','N','T','Y',' ','T','O',' ','H','U','N','T','.',' ','B','U','T',',',' ','I')
-    %introText(10, 'H','A','D',' ','H','A','R','D','L','Y',' ','G','O','N','E',' ','B','E','Y','O','N','D',' ','T','H','E')
-    %introText(12, 'A','S','T','E','R','O','I','D',' ','B','E','L','T',' ','W','H','E','N',' ','I',' ','P','I','C','K','E','D')
-    %introText(14, 'U','P',' ','A',' ','D','I','S','T','R','E','S','S',' ','S','I','G','N','A','L','!')
+    %introText(4, 'L','A','S','C','I','A','I',' ','L','A',' ','S','T','A','Z','I','O','N','E')
+    %introText(6, 'S','O','D','D','I','S','F','A','T','T','A',',',' ','P','R','O','N','T','A',' ','A')
+    %introText(8, 'C','A','C','C','I','A','R','E',' ','N','U','O','V','E',' ','T','A','G','L','I','E','.','.','.')
+    %introText(10, 'M','A',' ','A','P','P','E','N','A',' ','L','A','S','C','I','A','T','A',' ','L','A',' ','C','I','N','T','U','R','A')
+    %introText(12, 'D','I',' ','A','S','T','E','R','O','I','D','I',',',' ','H','O',' ','R','A','C','C','O','L','T','O')
+    %introText(14, 'U','N',' ','S','E','G','N','A','L','E',' ','A','N','G','O','S','C','I','A','N','T','E','!')
     dw $b1b3
     dw $9698
 
 IntroText6:
     dw $b228
     dw $0001,$0101,$d683
-    %introText(4, 'C','E','R','E','S',' ','S','T','A','T','I','O','N',' ','W','A','S',' ','U','N','D','E','R')
-    %introText(6, 'A','T','T','A','C','K','!','!')
+    %introText(4, 'C','E','R','E','S',' ','E','R','A',' ','S','O','T','T','O',' ','A','T','T','A','C','C','O','!')
     dw $add4
     dw $0080,$0101,$d683
     dw $b240
@@ -375,59 +380,66 @@ org $8cf3f0
     dw $884d,$0101,$2044 ; Ù
 
 SpaceColony:
-    dw $0010,$180a,#S
-    dw $0010,$180b,#P
-    dw $0010,$180c,#A
-    dw $0010,$180d,#C
-    dw $0010,$180e,#E
-    dw $0010,$1810,#C
-    dw $0010,$1811,#O
-    dw $0010,$1812,#L
-    dw $0010,$1813,#O
-    dw $0010,$1814,#N
-    dw $0010,$1815,#Y
+    dw $0010,$1808,#C
+    dw $0010,$1809,#O
+    dw $0010,$180a,#L
+    dw $0010,$180b,#O
+    dw $0010,$180c,#N
+    dw $0010,$180d,#I
+    dw $0010,$180e,#A
+    dw $0010,$1810,#S
+    dw $0010,$1811,#P
+    dw $0010,$1812,#A
+    dw $0010,$1813,#Z
+    dw $0010,$1814,#I
+    dw $0010,$1815,#A
+    dw $0010,$1816,#L
+    dw $0010,$1817,#E
     dw $c096 ; Subroutine
 
     ; This needs to be added because the routine does ADC #$0006
     dw $0000,$0000,$0000
     
     dw $0080,$0101,#PointerSub1
-    dw $0ca2,$9698
+    dw $c0a2,$9698
 PointerSub1:
     dw $8849 ; Subroutine
 
 ;org $8cd7c1
 S:
-    dw $88b7,$0101,$21ed
+    db $b7,$88,$01,$01,$ed,$21
 P:
-    dw $88b7,$0101,$21ee
+    db $b7,$88,$01,$01,$ee,$21
 A:
-    dw $88b7,$0101,$21ef
+    db $b7,$88,$01,$01,$ef,$21
 C:
-    dw $88b7,$0101,$21f7
+    db $b7,$88,$01,$01,$f7,$21
 E:
-    dw $88b7,$0101,$21f8
+    db $b7,$88,$01,$01,$f8,$21
 O:
-    dw $88b7,$0101,$21f9
+    db $b7,$88,$01,$01,$f9,$21
 L:
-    dw $88b7,$0101,$21fa
+    db $b7,$88,$01,$01,$fa,$21
 N:
-    dw $88b7,$0101,$21fb
-Y:
-    dw $88b7,$0101,$21b9
+    db $b7,$88,$01,$01,$fb,$21
+I:
+    db $b7,$88,$01,$01,$b9,$21
+Z:
+    db $b7,$88,$01,$01,$fc,$21
 
 PlanetZebes:
-    dw $000b ; Length
+    dw $000d ; Length
     db $28,$00,$f8,$9e,$00 ; S
     db $20,$00,$f8,$9a,$00 ; E
     db $18,$00,$f8,$9d,$00 ; B
     db $10,$00,$f8,$9a,$00 ; E
-    db $08,$00,$f8,$9c,$00 ; Z
-    db $f8,$01,$f8,$9b,$00 ; T
-    db $f0,$01,$f8,$9a,$00 ; E
-    db $e8,$01,$f8,$99,$00 ; N
-    db $e0,$01,$f8,$98,$00 ; A
-    db $d8,$01,$f8,$97,$00 ; L
-    db $d0,$01,$f8,$8f,$00 ; P
+    db $08,$00,$f8,$9C,$00 ; Z
+    db $f8,$01,$f8,$98,$00 ; A
+    db $f0,$01,$f8,$9b,$00 ; T
+    db $e8,$01,$f8,$9a,$00 ; E
+    db $e0,$01,$f8,$99,$00 ; N
+    db $d8,$01,$f8,$98,$00 ; A
+    db $d0,$01,$f8,$9f,$00 ; I
+    db $c8,$01,$f8,$8f,$00 ; P
 
 warnpc $8d0000

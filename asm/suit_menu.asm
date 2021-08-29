@@ -5,6 +5,9 @@ lorom
 ;; SAMUS MENU
 ;;------------------------------------------------------------------------------
 
+org $b68000
+    incbin "../gfx/1B0000_suit_menu.bin"
+
 ; Pointers
 org $82c088
     dw #Mode

@@ -5,6 +5,10 @@ lorom
 ;; MAIN MENU
 ;;------------------------------------------------------------------------------
 
+;; Graphics
+org $8e8000
+    incbin "../gfx/070000_menu_font.bin"
+
 ;org $8193fd
 ;    phb ; Push Data Bank Register to Stack
 ;    phk ; Push Program Bank Register to Stack
@@ -14,25 +18,24 @@ lorom
 
 org $819f07
     ldy.w #SamusData ; SAMUS DATA Pointer
-    ldx #$0056 ; Screen Position
-
-
+    ldx #$0052 ; Screen Position
+    
 org $819f13
-    ldy.w #SamusA ; SAMUS A (SAMUS DATA SCREEN) Pointer
+    ldy.w #SamusA ; SAMUS A Pointer
     ldx #$0146 ; Screen Position
 org $819636
     ldy.w #SamusA ; SAMUS A (DATA COPY/DATA CLEAR SCREENS) Pointer
     ldx #$0208 ; Screen Position
 
 org $819f46
-    ldy.w #SamusB ; SAMUS B (SAMUS DATA SCREEN) Pointer
+    ldy.w #SamusB ; SAMUS B Pointer
     ldx #$0286 ; Screen Position
 org $819666
     ldy.w #SamusB ; SAMUS B (DATA COPY/DATA CLEAR SCREENS) Pointer
     ldx #$0308 ; Screen Position
     
 org $819f7c
-    ldy.w #SamusC ; SAMUS C (SAMUS DATA SCREEN) Pointer
+    ldy.w #SamusC ; SAMUS C Pointer
     ldx #$03c6 ; Screen Position  
 org $819696
     ldy.w #SamusC ; SAMUS C (DATA COPY/DATA CLEAR SCREENS) Pointer
@@ -49,7 +52,6 @@ org $819fa9
     ldy.w #Time ; TIME 3 Pointer
     ldx #$03f6 ; Screen Position
 
-
 org $81a18a
     ldy.w #Colon ; : Pointer
 org $819f31
@@ -58,14 +60,14 @@ org $819f67
     ldx #$02f4 ; XX:XX 2 Screen Position
 org $819f9d
     ldx #$0434 ; XX:XX 2 Screen Position
-    
-    
+
+
 org $81a093
     ldy.w #NoData ; NO DATA Pointer
 
 org $81a09b
     ldy.w #Energy ; ENERGY Pointer
-    
+
 org $819f25
     ldx #$015c ; NO DATA/ENERGY 1 Screen Position
 org $819f5b
@@ -73,7 +75,7 @@ org $819f5b
 org $819f91
     ldx #$03dc ; NO DATA/ENERGY 1 Screen Position
 
-    
+
 org $819fc6
     ldy.w #DataCopy ; DATA COPY Pointer
     ldx #$0508 ; Screen Position
@@ -91,22 +93,22 @@ org $8195b5
 
 org $819569
     ldy.w #DataCopyMode ; DATA COPY MODE Pointer
-    ldx #$0052 ; Screen Position
+    ldx #$0056 ; Screen Position
 org $81979c
     ldy.w #DataCopyMode ; DATA COPY MODE Pointer
-    ldx #$0052 ; Screen Position 
+    ldx #$0056 ; Screen Position 
 
 org $819b3f
     ldy.w #DataClearMode ; "DATA CLEAR MODE" Pointer
-    ldx #$0050 ; Screen Position
+    ldx #$0054 ; Screen Position
 
 org $819575
     ldy.w #CopyWhichData ; COPY WHICH DATA? Pointer
-    ldx #$0150 ; Screen Position
-    
+    ldx #$0148 ; Screen Position
+
 org $8197a8
     ldy.w #CopyXtoWhere ; "COPY (SAMUS X) TO WHERE?" Pointer
-    ldx #$0148 ; Screen Position
+    ldx #$0144 ; Screen Position
 
 org $8198bb
     ldy.w #CopyXtoX ; "COPY (SAMUS X) TO (SAMUS X)." Pointer
@@ -114,7 +116,7 @@ org $8198bb
 
 org $8198ed
     ldy.w #IsThisOk ; "IS THIS OK?" Pointer
-    ldx #$0514 ; Screen Position
+    ldx #$0516 ; Screen Position
 
 org $8198f9
     ldy.w #Yes; "YES" Pointer
@@ -127,18 +129,19 @@ org $819916
 org $819ae5
     ldy.w #CopyCompleted ; "COPY COMPLETED." Pointer
     ldx #$0510 ; Screen Position
-    
+
 org $819b4b
     ldy.w #ClearWhichData ; "       CLEAR WHICH DATA?       "
-    ldx #$0140 ; Screen Position
+    ldx #$0136 ; Screen Position
 
 org $819c0f
     ldy.w #ClearX ; "        CLEAR (SAMUS X).       "
-    ldx #$0140 ; Screen Position
+    ldx #$0144 ; Screen Position
 
 org $819d11
     ldy.w #DataCleared ; "        DATA CLEARED...        "
-    ldx #$0500 ; Screen Position
+    ldx #$04fa ; Screen Position
+
 
 ;;------------------------------------------------------------------------------
 ;; VARIABLES OF SAMUS A/B/C POSITION
@@ -146,22 +149,22 @@ org $819d11
 
 ; COPY (SAMUS X) TO WHERE?
 org $8197b8
-	lda #$206a
-	sta $7e3760 ; Position
+    adc #$206a
+    sta $7e3776 ; Position
 
 ; COPY (SAMUS X) TO (SAMUS X)
 org $8198cb
-	adc #$206a
-	sta $7e375c ; Position
+    adc #$206a
+    sta $7e375e ; Position
 
 org $8198d6
-	adc #$206a
-	sta $7e3776 ; Position
+    adc #$206a
+    sta $7e3778 ; Position
 
 ; CLEAR (SAMUS X)
 org $819c1f
-	lda #$206a
-	sta #$7e376a ; Position
+    adc #$206a
+    sta $7e376e ; Position
 
 ;; Data
 ;; ORIGINAL SIZE: 784 bytes
@@ -182,26 +185,29 @@ org $819206
 
 org $81920f
     ldy #FindTheMetroidLarva ; FIND THE METROID LARVA! Pointer
-    ldx #$0384 ; FIND THE METROID LARVA! Screen Position
+    ldx #$0386 ; FIND THE METROID LARVA! Screen Position
 
 org $819218
     ldy #TryAgain ; TRY AGAIN? Pointer
-    ldx #$0414 ; TRY AGAIN? Screen Position
+    ldx #$0412 ; TRY AGAIN? Screen Position
 
 org $819221
     ldy #YesReturnToGame ; YES (RETURN TO GAME) Pointer
     ldx #$04ce ; YES (RETURN TO GAME) Screen Position
 
-org $819227
+org $81922a
     ldy #NoGoToTitle ; NO (GO TO TITLE) Pointer
     ldx #$05ce ; NO (GO TO TITLE) Screen Position
 
 
 ; GAME OVER
-org $8192dc
-
+; Original Data
+;org $8192dc
 
 warnpc $8193e8
+
+org $81b14d
+    incbin "../tilemaps/menu/00B14D_menu_map.tilemap"
 
 ;;------------------------------------------------------------------------------
 ;;------------------------------------------------------------------------------
@@ -237,7 +243,7 @@ DataCopyMode:
 DataClearMode:
     incbin "../tilemaps/menu/00B534_menu_DATA_CLEAR_MODE.tilemap"
 CopyWhichData:
-    incbin "../tilemaps/menu/00B574_menu_CLEAR_WHICH_DATA.tilemap"
+    incbin "../tilemaps/menu/00B574_menu_COPY_WHICH_DATA.tilemap"
 CopyXtoWhere:
     incbin "../tilemaps/menu/00B596_menu_COPY_SAMUS_TO_WHERE.tilemap"
 CopyXtoX:
@@ -251,7 +257,7 @@ No:
 CopyCompleted:
     incbin "../tilemaps/menu/00B63A_menu_COPY_COMPLETED.tilemap"
 ClearWhichData:
-    incbin "../tilemaps/menu/00B65A_menu_COPY_WHICH_DATA.tilemap"
+    incbin "../tilemaps/menu/00B65A_menu_CLEAR_WHICH_DATA.tilemap"
 ClearX:
     incbin "../tilemaps/menu/00B69A_menu_CLEAR_SAMUS_A.tilemap"
 DataCleared:
@@ -260,15 +266,15 @@ DataCleared:
 ;-------------------------------------------------------------------------------
 
 GameOver:
-    incbin "../tilemaps/menu/0092DC_gameover_GAME_OVER.tilemap"
+    incbin "../tilemaps/gameover/0092DC_gameover_GAME_OVER.tilemap"
 FindTheMetroidLarva:
-    incbin "../tilemaps/menu/009304_gameover_FIND_THE_METROID_LARVA.tilemap"
+    incbin "../tilemaps/gameover/009304_gameover_FIND_THE_METROID_LARVA.tilemap"
 TryAgain:
-    incbin "../tilemaps/menu/009334_gameover_TRY_AGAIN.tilemap"
+    incbin "../tilemaps/gameover/009334_gameover_TRY_AGAIN.tilemap"
 YesReturnToGame:
-    incbin "../tilemaps/menu/00934C_gameover_YES_RETURN_TO_GAME.tilemap"
+    incbin "../tilemaps/gameover/00934C_gameover_YES_RETURN_TO_GAME.tilemap"
 NoGoToTitle:
-    incbin "../tilemaps/menu/0093A0_gameover_NO_GO_TO_TITLE.tilemap"
+    incbin "../tilemaps/gameover/0093A0_gameover_NO_GO_TO_TITLE.tilemap"
 
 warnpc $820000
 
@@ -371,7 +377,7 @@ org $82c5f9
     
 org $82f480
     dw #OptionModeBorder ; Pointer OPTION MODE Border Sprites Data
-org $82f480
+org $82f488
     dw #OptionModeBorder ; Pointer OPTION MODE Border Sprites Data
 
 org $82f490
@@ -396,87 +402,86 @@ org $82d00b
 org $82d00b
 SamusDataBorder:
     ;  X, Y, TILE
-    db $20,$00 ; Length
-    db $c8,$01,$00,$ed,$3e ; 0 - Side
-    db $c8,$01,$f8,$ed,$3e ; 1 - Side
-    db $30,$00,$00,$ed,$3e ; 2 - Side
-    db $30,$00,$f8,$ed,$3e ; 3 - Side
-    db $30,$00,$08,$fd,$3e ; 4 - Bottom Right Corner
-    db $c8,$01,$08,$fc,$3e ; 5 - Bottom Left Corner
-    db $30,$00,$f0,$fb,$3e ; 6 - Upper Right Corner
-    db $c8,$01,$f0,$f9,$3e ; 7 - Upper Left Corner
+    db $26,$00 ; Length
+    db $b8,$01,$00,$ed,$3e ; 0 - Side
+    db $b8,$01,$f8,$ed,$3e ; 1 - Side
+    db $38,$00,$00,$ed,$3e ; 2 - Side
+    db $38,$00,$f8,$ed,$3e ; 3 - Side
+    db $38,$00,$08,$fd,$3e ; 4 - Bottom Right Corner
+    db $b8,$01,$08,$fc,$3e ; 5 - Bottom Left Corner
+    db $38,$00,$f0,$fb,$3e ; 6 - Upper Right Corner
+    db $b8,$01,$f0,$f9,$3e ; 7 - Upper Left Corner
     db $f8,$01,$08,$fa,$3e
     db $f0,$01,$08,$fa,$3e
-    db $e8,$01,$08,$fa,$3e
-    db $e0,$01,$08,$fa,$3e
-    db $d8,$01,$08,$fa,$3e
-    db $d0,$01,$08,$fa,$3e
-    db $28,$00,$08,$fa,$3e
-    db $20,$00,$08,$fa,$3e
-    db $18,$00,$08,$fa,$3e
-    db $10,$00,$08,$fa,$3e
-    db $08,$00,$08,$fa,$3e
-    db $00,$00,$08,$fa,$3e
-    db $28,$00,$f0,$fa,$3e
-    db $20,$00,$f0,$fa,$3e
-    db $18,$00,$f0,$fa,$3e
-    db $10,$00,$f0,$fa,$3e
-    db $08,$00,$f0,$fa,$3e
-    db $00,$00,$f0,$fa,$3e
-    db $f8,$01,$f0,$fa,$3e
-    db $f0,$01,$f0,$fa,$3e
-    db $e8,$01,$f0,$fa,$3e
-    db $e0,$01,$f0,$fa,$3e
-    db $d8,$01,$f0,$fa,$3e
-    db $d0,$01,$f0,$fa,$3e
-
-;; DATA COPY MODE Border Sprites Data
-DataCopyModeBorder:
-    db $28,$00
-    db $00,$00,$08,$fa,$3e
-    db $08,$00,$08,$fa,$3e
-    db $f0,$01,$08,$fa,$3e
-    db $f8,$01,$08,$fa,$3e
-    db $00,$00,$f0,$fa,$3e
-    db $08,$00,$f0,$fa,$3e
-    db $f0,$01,$f0,$fa,$3e
-    db $f8,$01,$f0,$fa,$3e
-    db $b8,$01,$00,$ed,$3e
-    db $b8,$01,$f8,$ed,$3e
-    db $40,$00,$00,$ed,$3e
-    db $40,$00,$f8,$ed,$3e
-    db $40,$00,$08,$fd,$3e
-    db $b8,$01,$08,$fc,$3e
-    db $40,$00,$f0,$fb,$3e
-    db $b8,$01,$f0,$f9,$3e
     db $e8,$01,$08,$fa,$3e
     db $e0,$01,$08,$fa,$3e
     db $d8,$01,$08,$fa,$3e
     db $d0,$01,$08,$fa,$3e
     db $c8,$01,$08,$fa,$3e
     db $c0,$01,$08,$fa,$3e
-    db $38,$00,$08,$fa,$3e
     db $30,$00,$08,$fa,$3e
     db $28,$00,$08,$fa,$3e
     db $20,$00,$08,$fa,$3e
     db $18,$00,$08,$fa,$3e
     db $10,$00,$08,$fa,$3e
-    db $38,$00,$f0,$fa,$3e
-    db $30,$00,$f0,$fa,$3e
+    db $08,$00,$08,$fa,$3e
+    db $00,$00,$08,$fa,$3e
     db $28,$00,$f0,$fa,$3e
     db $20,$00,$f0,$fa,$3e
     db $18,$00,$f0,$fa,$3e
     db $10,$00,$f0,$fa,$3e
+    db $08,$00,$f0,$fa,$3e
+    db $00,$00,$f0,$fa,$3e
+    db $f8,$01,$f0,$fa,$3e
+    db $f0,$01,$f0,$fa,$3e
     db $e8,$01,$f0,$fa,$3e
     db $e0,$01,$f0,$fa,$3e
     db $d8,$01,$f0,$fa,$3e
     db $d0,$01,$f0,$fa,$3e
     db $c8,$01,$f0,$fa,$3e
     db $c0,$01,$f0,$fa,$3e
+    db $30,$00,$f0,$fa,$3e
+   
+;; DATA COPY MODE Border Sprites Data
+DataCopyModeBorder:
+    db $20,$00
+    db $00,$00,$08,$fa,$3e
+    db $08,$00,$08,$fa,$3e
+    db $f0,$01,$08,$fa,$3e
+    db $f8,$01,$08,$fa,$3e
+    db $00,$00,$f0,$fa,$3e
+    db $08,$00,$f0,$fa,$3e
+    db $f0,$01,$f0,$fa,$3e
+    db $f8,$01,$f0,$fa,$3e
+    db $c8,$01,$00,$ed,$3e
+    db $c8,$01,$f8,$ed,$3e
+    db $30,$00,$00,$ed,$3e
+    db $30,$00,$f8,$ed,$3e
+    db $30,$00,$08,$fd,$3e
+    db $c8,$01,$08,$fc,$3e
+    db $30,$00,$f0,$fb,$3e
+    db $c8,$01,$f0,$f9,$3e
+    db $e8,$01,$08,$fa,$3e
+    db $e0,$01,$08,$fa,$3e
+    db $d8,$01,$08,$fa,$3e
+    db $d0,$01,$08,$fa,$3e
+    db $d0,$01,$f0,$fa,$3e
+    db $20,$00,$08,$fa,$3e
+    db $28,$00,$08,$fa,$3e
+    db $18,$00,$08,$fa,$3e
+    db $10,$00,$f0,$fa,$3e
+    db $10,$00,$08,$fa,$3e
+    db $20,$00,$f0,$fa,$3e
+    db $28,$00,$f0,$fa,$3e
+    db $18,$00,$f0,$fa,$3e
+    db $e8,$01,$f0,$fa,$3e
+    db $e0,$01,$f0,$fa,$3e
+    db $d8,$01,$f0,$fa,$3e
+    ;db $d0,$01,$f0,$fa,$3e
 
 ;; DATA CLEAR MODE Border Sprites Data
 DataClearModeBorder:
-    db $2a,$00
+    db $26,$00
     db $ec,$01,$f0,$fa,$3e
     db $ec,$01,$08,$fa,$3e
     db $04,$00,$08,$fa,$3e
@@ -487,20 +492,19 @@ DataClearModeBorder:
     db $0c,$00,$f0,$fa,$3e
     db $f4,$01,$f0,$fa,$3e
     db $fc,$01,$f0,$fa,$3e
-    db $b4,$01,$00,$ed,$3e
-    db $b4,$01,$f8,$ed,$3e
+    db $c4,$01,$00,$ed,$3e
+    db $c4,$01,$f8,$ed,$3e
     db $44,$00,$00,$ed,$3e
     db $44,$00,$f8,$ed,$3e
     db $44,$00,$08,$fd,$3e
-    db $b4,$01,$08,$fc,$3e
+    db $c4,$01,$08,$fc,$3e
     db $44,$00,$f0,$fb,$3e
-    db $b4,$01,$f0,$f9,$3e
+    db $c4,$01,$f0,$f9,$3e
     db $e4,$01,$08,$fa,$3e
     db $dc,$01,$08,$fa,$3e
     db $d4,$01,$08,$fa,$3e
     db $cc,$01,$08,$fa,$3e
-    db $c4,$01,$08,$fa,$3e
-    db $bc,$01,$08,$fa,$3e
+    db $cc,$01,$f0,$fa,$3e
     db $3c,$00,$08,$fa,$3e
     db $34,$00,$08,$fa,$3e
     db $2c,$00,$08,$fa,$3e
@@ -516,38 +520,29 @@ DataClearModeBorder:
     db $e4,$01,$f0,$fa,$3e
     db $dc,$01,$f0,$fa,$3e
     db $d4,$01,$f0,$fa,$3e
-    db $cc,$01,$f0,$fa,$3e
-    db $c4,$01,$f0,$fa,$3e
-    db $bc,$01,$f0,$fa,$3e
 
 ;;OPTION MODE Border Sprites Data
 OptionModeBorder:
-    db $22,$00
+    db $1a,$00
     db $fc,$01,$08,$fa,$3e
     db $fc,$01,$f0,$fa,$3e
     db $f4,$01,$08,$fa,$3e
     db $f4,$01,$f0,$fa,$3e
-    db $c4,$01,$00,$ed,$3e
-    db $c4,$01,$f8,$ed,$3e
-    db $34,$00,$00,$ed,$3e
-    db $34,$00,$f8,$ed,$3e
-    db $34,$00,$08,$fd,$3e
-    db $c4,$01,$08,$fc,$3e
-    db $34,$00,$f0,$fb,$3e
-    db $c4,$01,$f0,$f9,$3e
+    db $d4,$01,$00,$ed,$3e
+    db $d4,$01,$f8,$ed,$3e
+    db $24,$00,$00,$ed,$3e
+    db $24,$00,$f8,$ed,$3e
+    db $24,$00,$08,$fd,$3e
+    db $d4,$01,$08,$fc,$3e
+    db $24,$00,$f0,$fb,$3e
+    db $d4,$01,$f0,$f9,$3e
     db $ec,$01,$08,$fa,$3e
     db $e4,$01,$08,$fa,$3e
     db $dc,$01,$08,$fa,$3e
-    db $d4,$01,$08,$fa,$3e
-    db $cc,$01,$08,$fa,$3e
-    db $2c,$00,$08,$fa,$3e
-    db $24,$00,$08,$fa,$3e
     db $1c,$00,$08,$fa,$3e
     db $14,$00,$08,$fa,$3e
     db $0c,$00,$08,$fa,$3e
     db $04,$00,$08,$fa,$3e
-    db $2c,$00,$f0,$fa,$3e
-    db $24,$00,$f0,$fa,$3e
     db $1c,$00,$f0,$fa,$3e
     db $14,$00,$f0,$fa,$3e
     db $0c,$00,$f0,$fa,$3e
@@ -555,13 +550,11 @@ OptionModeBorder:
     db $ec,$01,$f0,$fa,$3e
     db $e4,$01,$f0,$fa,$3e
     db $dc,$01,$f0,$fa,$3e
-    db $d4,$01,$f0,$fa,$3e
-    db $cc,$01,$f0,$fa,$3e
 
 ;; CONTROLLER SETTING MODE Border Sprites Data
 ControllerSettingModeBorder:
-    db $3a,$00
-    db $dc,$01,$08,$fa,$3e
+    db $35,$00
+    db $dc,$01,$08,$fa,$3e   
     db $e4,$01,$08,$fa,$3e
     db $14,$00,$08,$fa,$3e
     db $0c,$00,$08,$fa,$3e
@@ -581,34 +574,29 @@ ControllerSettingModeBorder:
     db $cc,$01,$08,$fa,$3e
     db $24,$00,$08,$fa,$3e
     db $2c,$00,$08,$fa,$3e
+    db $34,$00,$08,$fa,$3e
     db $d4,$01,$08,$fa,$3e
     db $1c,$00,$08,$fa,$3e
     db $24,$00,$f0,$fa,$3e
     db $2c,$00,$f0,$fa,$3e
     db $d4,$01,$f0,$fa,$3e
     db $1c,$00,$f0,$fa,$3e
-    db $94,$01,$00,$ed,$3e
-    db $94,$01,$f8,$ed,$3e
-    db $64,$00,$00,$ed,$3e
-    db $64,$00,$f8,$ed,$3e
-    db $64,$00,$08,$fd,$3e
-    db $94,$01,$08,$fc,$3e
-    db $64,$00,$f0,$fb,$3e
-    db $94,$01,$f0,$f9,$3e
+    db $9d,$01,$00,$ed,$3e
+    db $9d,$01,$f8,$ed,$3e
+    db $54,$00,$00,$ed,$3e
+    db $54,$00,$f8,$ed,$3e
+    db $54,$00,$08,$fd,$3e
+    db $9d,$01,$08,$fc,$3e
+    db $54,$00,$f0,$fb,$3e
+    db $9d,$01,$f0,$f9,$3e
     db $c4,$01,$08,$fa,$3e
     db $bc,$01,$08,$fa,$3e
     db $b4,$01,$08,$fa,$3e
     db $ac,$01,$08,$fa,$3e
-    db $a4,$01,$08,$fa,$3e
-    db $9c,$01,$08,$fa,$3e
-    db $5c,$00,$08,$fa,$3e
-    db $54,$00,$08,$fa,$3e
-    db $4c,$00,$08,$fa,$3e
-    db $44,$00,$08,$fa,$3e
     db $3c,$00,$08,$fa,$3e
-    db $34,$00,$08,$fa,$3e
-    db $5c,$00,$f0,$fa,$3e
-    db $54,$00,$f0,$fa,$3e
+    db $44,$00,$08,$fa,$3e
+    db $4c,$00,$08,$fa,$3e
+    db $40,$00,$f0,$fa,$3e
     db $4c,$00,$f0,$fa,$3e
     db $44,$00,$f0,$fa,$3e
     db $3c,$00,$f0,$fa,$3e
@@ -618,11 +606,11 @@ ControllerSettingModeBorder:
     db $b4,$01,$f0,$fa,$3e
     db $ac,$01,$f0,$fa,$3e
     db $a4,$01,$f0,$fa,$3e
-    db $9c,$01,$f0,$fa,$3e
+    db $a4,$01,$08,$fa,$3e
     
 ; SPECIAL SETTING MODE Border Sprite Data
 SpecialSettingModeBorder:
-    db $34,$00
+    db $2c,$00
     db $e8,$01,$08,$fa,$3e
     db $f0,$01,$08,$fa,$3e
     db $08,$00,$08,$fa,$3e
@@ -643,28 +631,22 @@ SpecialSettingModeBorder:
     db $20,$00,$f0,$fa,$3e
     db $e0,$01,$f0,$fa,$3e
     db $10,$00,$f0,$fa,$3e
-    db $a0,$01,$00,$ed,$3e
-    db $a0,$01,$f8,$ed,$3e
-    db $58,$00,$00,$ed,$3e
-    db $58,$00,$f8,$ed,$3e
-    db $58,$00,$08,$fd,$3e
-    db $a0,$01,$08,$fc,$3e
-    db $58,$00,$f0,$fb,$3e
-    db $a0,$01,$f0,$f9,$3e
+    db $b0,$01,$00,$ed,$3e
+    db $b0,$01,$f8,$ed,$3e
+    db $46,$00,$00,$ed,$3e
+    db $46,$00,$f8,$ed,$3e
+    db $46,$00,$08,$fd,$3e
+    db $b0,$01,$08,$fc,$3e
+    db $46,$00,$f0,$fb,$3e
+    db $b0,$01,$f0,$f9,$3e
     db $d0,$01,$08,$fa,$3e
     db $c8,$01,$08,$fa,$3e
     db $c0,$01,$08,$fa,$3e
     db $b8,$01,$08,$fa,$3e
-    db $b0,$01,$08,$fa,$3e
-    db $a8,$01,$08,$fa,$3e
-    db $50,$00,$08,$fa,$3e
-    db $48,$00,$08,$fa,$3e
     db $40,$00,$08,$fa,$3e
     db $38,$00,$08,$fa,$3e
     db $30,$00,$08,$fa,$3e
     db $28,$00,$08,$fa,$3e
-    db $50,$00,$f0,$fa,$3e
-    db $48,$00,$f0,$fa,$3e
     db $40,$00,$f0,$fa,$3e
     db $38,$00,$f0,$fa,$3e
     db $30,$00,$f0,$fa,$3e
@@ -673,8 +655,6 @@ SpecialSettingModeBorder:
     db $c8,$01,$f0,$fa,$3e
     db $c0,$01,$f0,$fa,$3e
     db $b8,$01,$f0,$fa,$3e
-    db $b0,$01,$f0,$fa,$3e
-    db $a8,$01,$f0,$fa,$3e
     
 warnpc $82d521
 
@@ -693,29 +673,31 @@ org $82f710
 
 ;org $82cbfb
 PlanetZebes1:
-    db $16,$00
-    db $28,$00,$00,$3b,$30
-    db $28,$00,$f8,$2b,$30
-    db $20,$00,$00,$1e,$30
-    db $20,$00,$f8,$0e,$30
-    db $18,$00,$00,$1b,$30
-    db $18,$00,$f8,$0b,$30
-    db $10,$00,$00,$1e,$30
-    db $10,$00,$f8,$0e,$30
-    db $08,$00,$00,$52,$30
-    db $08,$00,$f8,$42,$30
-    db $f8,$01,$00,$11,$30
-    db $f8,$01,$f8,$2c,$30
-    db $f0,$01,$00,$1e,$30
-    db $f0,$01,$f8,$0e,$30
-    db $e8,$01,$00,$37,$30
-    db $e8,$01,$f8,$27,$30
-    db $e0,$01,$00,$1a,$30
-    db $e0,$01,$f8,$0a,$30
-    db $d8,$01,$00,$35,$30
-    db $d8,$01,$f8,$25,$30
-    db $d0,$01,$f8,$0d,$30
-    db $d0,$01,$00,$38,$30
+    dw $0018
+    db $28,$00,$00 : dw $303b
+    db $28,$00,$f8 : dw $302b
+    db $20,$00,$00 : dw $301e
+    db $20,$00,$f8 : dw $300e
+    db $18,$00,$00 : dw $301b
+    db $18,$00,$f8 : dw $300b
+    db $10,$00,$00 : dw $301e
+    db $10,$00,$f8 : dw $300e
+    db $08,$00,$00 : dw $3052
+    db $08,$00,$f8 : dw $3042
+    db $f8,$01,$00 : dw $301a
+    db $f8,$01,$f8 : dw $300a
+    db $f0,$01,$00 : dw $3011
+    db $f0,$01,$f8 : dw $302c
+    db $e8,$01,$00 : dw $301e
+    db $e8,$01,$f8 : dw $300e
+    db $e0,$01,$00 : dw $3037
+    db $e0,$01,$f8 : dw $3027
+    db $d8,$01,$00 : dw $301a
+    db $d8,$01,$f8 : dw $300a
+    db $d0,$01,$00 : dw $3011
+    db $d0,$01,$f8 : dw $3022
+    db $c8,$01,$f8 : dw $300d
+    db $c8,$01,$00 : dw $3038
 
 
 warnpc $82ff00 ; suit_menu.asm adds data after this address
@@ -765,16 +747,16 @@ org $978d12
     
 org $978d12
 IntroTextTilemap:
-    incbin "../tilemaps/intro_text.bin"
+    incbin "../tilemaps/compressed/intro_text.bin"
 OptionModeTilemap:
-    incbin "../tilemaps/menu/option_mode.bin"
+    incbin "../tilemaps/compressed/option_mode.bin"
 ControllerSettingTilemapENG:
-    incbin "../tilemaps/menu/controller_setting_ENG.bin"
+    incbin "../tilemaps/compressed/controller_setting_ENG.bin"
 ControllerSettingTilemapJAP:
-    incbin "../tilemaps/menu/controller_setting_JAP.bin"
+    incbin "../tilemaps/compressed/controller_setting_JAP.bin"
 SpecialSettingTilemapENG:
-    incbin "../tilemaps/menu/special_setting_ENG.bin"
+    incbin "../tilemaps/compressed/special_setting_ENG.bin"
 SpecialSettingTilemapJAP:
-    incbin "../tilemaps/menu/special_setting_JAP.bin"
+    incbin "../tilemaps/compressed/special_setting_JAP.bin"
 
 warnpc $97b242
