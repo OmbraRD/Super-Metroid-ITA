@@ -9,6 +9,9 @@ lorom
 org $8e8000
     incbin "../gfx/070000_menu_font.bin"
 
+org $8ed600
+    incbin "../gfx/075600_header.bin"
+
 ;org $8193fd
 ;    phb ; Push Data Bank Register to Stack
 ;    phk ; Push Program Bank Register to Stack
@@ -349,7 +352,17 @@ org $82ec99
     lda.w #SpecialSettingTilemapENG ; Pointer
     sta $47
     jsl $80b0ff
-    
+
+org $82f131 ; MANUAL Tiles to gray out top
+   ldy #$000e
+org $82f13f ; MANUAL Tiles to gray out bottom
+   ldy #$000e
+
+org $82f0f0 ; MANUAL Tiles to color top
+   ldy #$000e
+org $82f0fe ; MANUAL Tiles to color bottom
+   ldy #$000e
+
 ;;------------------------------------------------------------------------------
 ;; SPECIAL SETTING MODE JAP - TILEMAP (COMPRESSED)
 ;;------------------------------------------------------------------------------

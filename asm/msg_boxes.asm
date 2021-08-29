@@ -1,6 +1,9 @@
 arch 65816
 lorom
 
+org $9ab200
+    incbin "../gfx/0D3200_msg_boxes.bin"
+    
 ;;------------------------------------------------------------------------------
 ;; WOULD YOU LIKE TO SAVE? YES/NO SWITCH
 ;;------------------------------------------------------------------------------
@@ -8,16 +11,16 @@ lorom
 ; YES/NO Highlight
 org $858510
     ;ldy #$0040 ; YES Selected
-    ldy.w SelYes-YesNo
+    ldy.w #SelYes2-SelYes1
 org $858518
     ;ldy #$0080 ; NO Selected
-    ldy.w SelNo-YesNo
+    ldy.w #SelNo-SelYes1
 org $85851b
-    ldx #$100 ; Screen Position
-    lda #$20 ; Amount of tiles
+    ldx #$00c0 ; Screen Position
+    lda #$40 ; Amount of tiles
     ;sta $7e0034
 org $858523
-    lda.w YesNo,y
+    lda.w SelYes1,y
     sta $7e3200,x ; Screen Position
     ;inx
     ;inx
@@ -209,12 +212,12 @@ Empty:
 ;; WOULD YOU LIKE TO SAVE? YES/NO SWITCH TILEMAPS
 ;;------------------------------------------------------------------------------
 
-org $859581 ; NOT USED!
-YesNo:
-
-org $8595c1
-SelYes:
-    incbin "../tilemaps/0295C1_msg_boxes_save_yes.tilemap"
-org $859601
+org $859581
+SelYes1:
+    incbin "../tilemaps/029581_msg_boxes_save_yes1.tilemap"
+;org $8595c1
+SelYes2:
+    incbin "../tilemaps/0295C1_msg_boxes_save_yes2.tilemap"
+;org $859601
 SelNo:
     incbin "../tilemaps/029601_msg_boxes_save_no.tilemap"

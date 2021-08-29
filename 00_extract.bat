@@ -21,6 +21,7 @@ rem ----------------------------------------------------------------------------
 rem ----------------------------------------------------------------------------
 echo Extracting Uncompressed Graphics...
 %DD% skip=458752 count=16384 if=%ROM% of=%GFX%\070000_menu_font.bin bs=1 2>NUL
+%DD% skip=480768 count=1280 if=%ROM% of=%GFX%\075600_header.bin bs=1 2>NUL
 %DD% skip=864768 count=4096 if=%ROM% of=%GFX%\0D3200_msg_boxes.bin bs=1 2>NUL
 %DD% skip=1589248 count=1024 if=%ROM% of=%GFX%\184000_self_destruct_timer.bin bs=1 2>NUL
 %DD% skip=1769472 count=16384 if=%ROM% of=%GFX%\1B0000_suit_menu.bin bs=1 2>NUL
@@ -87,8 +88,9 @@ echo Extracting Uncompressed Tilemaps...
 %DD% skip=37792 count=72 if=%ROM% of=%TILEMAP%\gameover\0093A0_gameover_NO_GO_TO_TITLE.tilemap bs=1 2>NUL
 
 %DD% skip=165887 count=3584 if=%ROM% of=%TILEMAP%\0287FF_msg_boxes.tilemap bs=1 2>NUL
-%DD% skip=165887 count=3584 if=%ROM% of=%TILEMAP%\0295C1_msg_boxes_save_yes.tilemap bs=1 2>NUL
-%DD% skip=165887 count=3584 if=%ROM% of=%TILEMAP%\029601_msg_boxes_save_no.tilemap bs=1 2>NUL
+%DD% skip=169345 count=64 if=%ROM% of=%TILEMAP%\029581_msg_boxes_save_yes1.tilemap bs=1 2>NUL
+%DD% skip=169409 count=64 if=%ROM% of=%TILEMAP%\0295C1_msg_boxes_save_yes2.tilemap bs=1 2>NUL
+%DD% skip=169473 count=64 if=%ROM% of=%TILEMAP%\029601_msg_boxes_save_no.tilemap bs=1 2>NUL
 
 %DD% skip=81670 count=14 if=%ROM% of=%TILEMAP%\suit\013F06_suit_mode.tilemap bs=1 2>NUL
 %DD% skip=81684 count=14 if=%ROM% of=%TILEMAP%\suit\013F14_suit_reserve_tank.tilemap bs=1 2>NUL

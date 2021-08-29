@@ -31,6 +31,18 @@ org $82c088
 ;; SAMUS MENU - SUPPLY TYPE - AUTO/MANUAL
 ;;------------------------------------------------------------------------------
 
+;; RESERVE
+
+; Length
+org $82ab75
+    lda.w #0007
+
+org $82ab80
+    lda $7e3a88,x ; Screen Position
+    and #$fc00
+    ora [$00],y
+    sta $7e3a88,x ; Screen Position
+
 ;; MODE [MANUAL]
 
 ; Screen Position
@@ -43,22 +55,30 @@ org $82a146
 
 ;; [AUTO] / [MANUAL]
 
-; Pointer
+; Pointers
 org $82ab60
     ldx.w #SupplyAuto
 
 org $82ab6b
     ldx.w #SupplyManual
 
-; Length
-org $82ab75
-    lda.w #0005
-
-org $82ab80
-    lda $7e3a8c,x ; Screen Position
+; Supply Auto
+org $82aeb5
+    ldy #$000e ; Length
+    ldx #$0000
+    lda $7e3a88,x ; Screen Position 
     and #$fc00
-    ora [$00],y
-    sta $7e3a8c,x ; Screen Position
+    ora.l SupplyManual,x 
+    sta $7e3a88,x ; Screen Position
+
+; Supply Manual
+org $82aedf
+    ldy #$000e ; Length
+    ldx #$0000
+    lda $7e3a88,x ; Screen Position 
+    and #$fc00
+    ora.l SupplyAuto,x 
+    sta $7e3a88,x ; Screen Position
 
 ; Original Tilemap Offset
 ;org $82bf2a
@@ -95,8 +115,11 @@ org $82b0b8
 
 
 ;;------------------------------------------------------------------------------
-;; SAMUS MENU - SUIT-MISC-BOOTS TILEMAPS
+;; SAMUS MENU - FULL-SUIT-MISC-BOOTS TILEMAPS
 ;;------------------------------------------------------------------------------
+org $b6e900
+    incbin "../tilemaps/suit/1B6900_suit_menu.tilemap"
+
 org $82bf64
     Suit:
     incbin "../tilemaps/suit/013F64_suit_suit.tilemap"
@@ -126,15 +149,17 @@ org $82ff00 ; menu.asm adds data before this address
 
 ; Beam Selection Box Sprite Data
 BeamSelectionBox:
-    db $0c,$00
+    dw $000e
+    db $18,$00,$04,$5c,$34
+    db $18,$00,$fc,$5c,$34
     db $10,$00,$04,$5c,$34
     db $10,$00,$fc,$5c,$34
     db $f0,$01,$04,$5c,$34
     db $f8,$01,$04,$5c,$34
     db $00,$00,$04,$5c,$34
     db $08,$00,$04,$5c,$34
-    db $18,$00,$04,$5e,$34
-    db $18,$00,$fc,$5d,$34
+    db $20,$00,$04,$5e,$34
+    db $20,$00,$fc,$5d,$34
     db $08,$00,$fc,$5c,$34
     db $00,$00,$fc,$5c,$34
     db $f8,$01,$fc,$5c,$34
