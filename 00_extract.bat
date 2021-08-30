@@ -88,9 +88,8 @@ echo Extracting Uncompressed Tilemaps...
 %DD% skip=37792 count=72 if=%ROM% of=%TILEMAP%\gameover\0093A0_gameover_NO_GO_TO_TITLE.tilemap bs=1 2>NUL
 
 %DD% skip=165887 count=3584 if=%ROM% of=%TILEMAP%\0287FF_msg_boxes.tilemap bs=1 2>NUL
-%DD% skip=169345 count=64 if=%ROM% of=%TILEMAP%\029581_msg_boxes_save_yes1.tilemap bs=1 2>NUL
-%DD% skip=169409 count=64 if=%ROM% of=%TILEMAP%\0295C1_msg_boxes_save_yes2.tilemap bs=1 2>NUL
-%DD% skip=169473 count=64 if=%ROM% of=%TILEMAP%\029601_msg_boxes_save_no.tilemap bs=1 2>NUL
+%DD% skip=165887 count=3584 if=%ROM% of=%TILEMAP%\0295C1_msg_boxes_save_yes.tilemap bs=1 2>NUL
+%DD% skip=165887 count=3584 if=%ROM% of=%TILEMAP%\029601_msg_boxes_save_no.tilemap bs=1 2>NUL
 
 %DD% skip=81670 count=14 if=%ROM% of=%TILEMAP%\suit\013F06_suit_mode.tilemap bs=1 2>NUL
 %DD% skip=81684 count=14 if=%ROM% of=%TILEMAP%\suit\013F14_suit_reserve_tank.tilemap bs=1 2>NUL

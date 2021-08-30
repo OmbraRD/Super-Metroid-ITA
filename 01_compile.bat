@@ -6,7 +6,7 @@ set PATCHES="asm"
 set GFX="gfx"
 set TILEMAP="tilemaps"
 set LCCMP="tools\Lunar Compress\recomp.exe"
-set ASAR="asar.exe"
+set ASAR="tools\asar.exe"
 rem ----------------------------------------------------------------------------
 
 rem ----------------------------------------------------------------------------
