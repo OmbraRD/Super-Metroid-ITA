@@ -97,6 +97,9 @@ org $82a188
     ldx #$c01a ; Pointer
     lda #$000c ; Length
 
+org $82a1c8
+    lda #$000c ; Length
+
 ; Selection Sprite
 org $82c593
     dw #BeamSelectionBox
@@ -131,6 +134,9 @@ org $82bf88
 org $82bfd2
     Boots:
     incbin "../tilemaps/suit/013FD2_suit_boots.tilemap"
+
+org $82c008
+    incbin "../tilemaps/suit/014008_suit_hyperbeam.tilemap"
     
 ;;------------------------------------------------------------------------------
 ;; BANK $82 - FREE SPACE - 256 bytes
