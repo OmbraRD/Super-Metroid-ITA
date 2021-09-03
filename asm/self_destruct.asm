@@ -22,6 +22,9 @@ org $a6c15d
 org $a6c0c3
     lda.w #SelfDestructMessage
 
+org $a6c24f
+    lda.w #SetBombMessage
+
 ;; Original Data
 ;org $a6c450
 
@@ -49,6 +52,12 @@ org $a6fec0
     dw $000d,$5185 : db "LA COLONIA"
     dw $0000
 
+    SetBombMessage:
+    dw $0001,$0002
+    dw $000d,$4905 : db "BOMBA INNESCATA!"
+    dw $000d,$4945 : db "EVACUARE IMMEDIATAMENTE!"
+    dw $0000
+
 warnpc $a70000
 
 org $b7da00
@@ -74,9 +83,9 @@ org $809f6f
 
 org $80cd90
 CountDownTimer:
-    dw $0005
-    db $00,$02,$f0 : dw $3b9f ; O
-    db $f8,$01,$f0 : dw $3b9e ; PO
+    dw $0007
+    db $00,$02,$f0 : dw $3bc1 ; O
+    db $f8,$01,$f0 : dw $3bc0 ; PO
     db $f0,$01,$f0 : dw $3bf8 ; MP
     db $e8,$01,$f0 : dw $3bf7 ; EM
     db $e0,$01,$f0 : dw $3bf6 ; T
