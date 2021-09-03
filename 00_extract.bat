@@ -35,6 +35,7 @@ echo Extracting Compressed Graphics...
 REM %LCDEC% %ROM% %GFX%\0AF90E_samus_intro_bg.bin 0AF90E 4 0
 %LCDEC% %ROM% %GFX%\0B510A_space_colony.bin 0B510A 4 0 1>NUL
 %LCDEC% %ROM% %GFX%\0B6C76_planet_zebes.bin 0B6C76 4 0 1>NUL
+%LCDEC% %ROM% %GFX%\0BE7DE_end_font.bin 0BE7DE 4 0 1>NUL
 
 rem ----------------------------------------------------------------------------
 echo Extracting Palettes...
@@ -100,8 +101,7 @@ echo Extracting Uncompressed Tilemaps...
 %DD% skip=81764 count=36 if=%ROM% of=%TILEMAP%\suit\013F64_suit_suit.tilemap bs=1 2>NUL
 %DD% skip=81800 count=76 if=%ROM% of=%TILEMAP%\suit\013F88_suit_misc.tilemap bs=1 2>NUL
 %DD% skip=81874 count=54 if=%ROM% of=%TILEMAP%\suit\013FD2_suit_boots.tilemap bs=1 2>NUL
-%DD% skip=81928 count=16 if=%ROM% of=%TILEMAP%\suit\014008_suit_Hyperbeam.tilemap bs=1 2>NUL
-
+%DD% skip=81928 count=16 if=%ROM% of=%TILEMAP%\suit\014008_suit_hyperbeam.tilemap bs=1 2>NUL
 
 %DD% skip=1796352 count=4096 if=%ROM% of=%TILEMAP%\suit\1B6900_suit_menu.tilemap bs=1 2>NUL
 
