@@ -16,6 +16,7 @@ if not exist "%TILEMAP%" mkdir %TILEMAP%
 if not exist "%TILEMAP%\menu\" mkdir %TILEMAP%\menu\
 if not exist "%TILEMAP%\gameover\" mkdir %TILEMAP%\gameover\
 if not exist "%TILEMAP%\suit\" mkdir %TILEMAP%\suit\
+if not exist "%TILEMAP%\ending\" mkdir %TILEMAP%\ending\
 rem ----------------------------------------------------------------------------
 
 rem ----------------------------------------------------------------------------
@@ -105,6 +106,8 @@ echo Extracting Uncompressed Tilemaps...
 
 %DD% skip=1796352 count=4096 if=%ROM% of=%TILEMAP%\suit\1B6900_suit_menu.tilemap bs=1 2>NUL
 
+%DD% skip=416923 count=576 if=%ROM% of=%TILEMAP%\ending\065C9B_produced_by.tilemap bs=1 2>NUL
+
 rem ----------------------------------------------------------------------------
 echo Extracting Compressed Tilemaps...
 REM %LCDEC% %ROM% %TILEMAP%\0B7F14.bin 0B7F14 4 0 ?TILEMAP?
@@ -115,3 +118,4 @@ REM %LCDEC% %ROM% %TILEMAP%\0B88CC.bin 0B88CC 4 0 ?TILEMAP?
 %LCDEC% %ROM% %TILEMAP%\menu\0B91C4_controller_setting_JAP.tilemap 0B91C4 4 0 1>NUL
 %LCDEC% %ROM% %TILEMAP%\menu\0B938D_special_setting_ENG.tilemap 0B938D 4 0 1>NUL
 %LCDEC% %ROM% %TILEMAP%\menu\0B953A_special_setting_JAP.tilemap 0B953A 4 0 1>NUL
+%LCDEC% %ROM% %TILEMAP%\ending\0BEEFF_credits.tilemap 0BEEFF 4 0 1>NUL

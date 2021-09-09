@@ -28,6 +28,7 @@ echo Compressing Tilemaps...
 %LCCMP% %TILEMAP%\menu\0B91C4_controller_setting_JAP.tilemap %TILEMAP%\compressed\controller_setting_JAP.bin 0 4 0
 %LCCMP% %TILEMAP%\menu\0B938D_special_setting_ENG.tilemap %TILEMAP%\compressed\special_setting_ENG.bin 0 4 0
 %LCCMP% %TILEMAP%\menu\0B953A_special_setting_JAP.tilemap %TILEMAP%\compressed\special_setting_JAP.bin 0 4 0
+%LCCMP% %TILEMAP%\ending\0BEEFF_credits.tilemap %TILEMAP%\compressed\credits.bin 0 4 0
 
 echo.
 echo Applying hacks...
