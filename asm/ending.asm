@@ -251,7 +251,7 @@ CreditsProducedBy:
 ;;------------------------------------------------------------------------------
 
 org $8bf752
-    dw $ItemsRate
+    dw #ItemsRate
 
 org $8cdfdb
 ItemsRate:
@@ -291,8 +291,8 @@ ItemsRate:
     dw $0004,$0c17,$e1a7 ; I
     dw $0004,$0c18,$e1cb ; S
 
-    dw $27e6
-    dw $69e7
+    dw $e627
+    dw $e769
 
     dw $0080,$0000,$e12f
 

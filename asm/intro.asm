@@ -165,13 +165,13 @@ org $8bf760
 ;; Check and replace char for accented ones
 CheckAccentedChar:
     ; If char value is over tile $2030, it may be intro and accented.
-    cmp #$2030
+    cmp #$2080
     bcs MayBeAccented
     jmp Continue
     
-    ; If char value is less than $2100, it is the intro and accented.
+    ; If char value is less than $209f, it is the intro and accented.
     MayBeAccented:
-    cmp #$20ff
+    cmp #$209f
     bmi IsAccented
     jmp Continue
 
@@ -181,7 +181,7 @@ CheckAccentedChar:
     sta $7e2fc0,x ; Store char to tilemap on top of char
     pla ; Restore char value
     sec
-    sbc #$0030 ; Subtract $30 to get the actual char
+    sbc #$0080 ; Subtract $80 to get the actual char
 
     Continue:
     ; ORIGINAL CODE
@@ -369,15 +369,15 @@ org $8bcccf
 ; WARNING: Moving this will require fixing intro.tbl entries
 org $8cf3f0
     LetterA:
-    dw $884d,$0101,$2030 ; À
+    dw $884d,$0101,$2080 ; À
     LetterE:
-    dw $884d,$0101,$2034 ; È
+    dw $884d,$0101,$2084 ; È
     LetterI:
-    dw $884d,$0101,$2038 ; Ì
+    dw $884d,$0101,$2088 ; Ì
     LetterO:
-    dw $884d,$0101,$203e ; Ò
+    dw $884d,$0101,$208e ; Ò
     LetterU:
-    dw $884d,$0101,$2044 ; Ù
+    dw $884d,$0101,$2094 ; Ù
 
 SpaceColony:
     dw $0010,$1808,#C
