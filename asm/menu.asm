@@ -12,6 +12,9 @@ org $8e8000
 org $8ed600
     incbin "../gfx/075600_header.bin"
 
+org $b6c000
+    incbin "../gfx/1B4000_map.bin"
+
 ;org $8193fd
 ;    phb ; Push Data Bank Register to Stack
 ;    phk ; Push Program Bank Register to Stack
