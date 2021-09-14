@@ -126,8 +126,8 @@ org $85869b
 ;;------------------------------------------------------------------------------
 
 org $85877f
-    incbin "../tilemaps/0287FF_msg_boxes.tilemap"
 EnergyTank:
+    incbin "../tilemaps/0287FF_msg_boxes.tilemap"
 
 org $8587bf
 Missile:
