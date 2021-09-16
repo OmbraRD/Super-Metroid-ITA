@@ -34,31 +34,31 @@ org $858523
 
 ; MISSILE 
 org $85874b
-    dw $012a ; screen position
+    dw $0130 ; screen position
 
 ; SUPER MISSILE 
 org $85874d
-    dw $012a
+    dw $0130
 
 ;POWER BOMB
 org $85874f
-    dw $012c
+    dw $0132
 
 ; GRAPPLING BEAM
 org $858751
-    dw $012c
+    dw $0134
 
 ; X-RAY SCOPE 
 org $858753
-    dw $012c
+    dw $0134
 
 ; SPEED BOOSTER 
 org $858761
-    dw $0120
+    dw $0124
 
 ; BOMB
 org $85876d
-    dw $012e
+    dw $0130
 
        
 ;;------------------------------------------------------------------------------
