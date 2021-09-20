@@ -362,7 +362,7 @@ org $8bcccf
 
 
 ;;------------------------------------------------------------------------------
-;; BANK $8C - FREE SPACE - 3088 bytes
+;; BANK $8C - FREE SPACE - 1552 bytes
 ;;------------------------------------------------------------------------------
 
 ; Letters with accents for intro font
@@ -442,4 +442,4 @@ PlanetZebes:
     db $d0,$01,$f8,$9f,$00 ; I
     db $c8,$01,$f8,$8f,$00 ; P
 
-warnpc $8d0000
+warnpc $8cfa00
