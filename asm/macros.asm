@@ -33,7 +33,7 @@ macro endText(x, y, ...)
     !spaces #= 0
     !c #= 0   
     while !c < sizeof(...)
-        if <!c> >= ' ' && <!c> <= 'Z'
+        if <!c> >= ' ' && <!c> <= 'e'
             if <!c> == ' '
                 !spaces #= !spaces+1
             endif
