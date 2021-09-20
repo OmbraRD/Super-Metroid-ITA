@@ -19,6 +19,7 @@ echo Compressing Graphics...
 %LCCMP% %GFX%\0B510A_space_colony.bin %TRANSLATED_ROM% 0B510A 4 0
 %LCCMP% %GFX%\0B6C76_planet_zebes.bin %TRANSLATED_ROM% 0B6C76 4 0
 %LCCMP% %GFX%\0AD089_prelude_font.bin %TRANSLATED_ROM% 0AD089 4 0
+%LCCMP% %GFX%\0BE7DE_end_font.bin %TRANSLATED_ROM% 0BE7DE 4 0
 
 echo.
 echo Compressing Tilemaps...
