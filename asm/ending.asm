@@ -7,7 +7,8 @@ lorom
 ;; NOTES:
 ;; $0008 = Sequential Chars
 ;; $000F = Space after Char
-;;
+;; $0001-00FF = Time code befere new char print
+
 ;; Last pointer of line is repeated
 ;;------------------------------------------------------------------------------
 
@@ -16,10 +17,8 @@ org $8beecb
 
 org $8beb91
 OperationSuccesful:
-    dw $0008,#Data01
     dw $0008,#Data02
-    dw $000f,#Data03
-
+    dw $0008,#Data03
     dw $0008,#Data04
     dw $0008,#Data05
     dw $0008,#Data06
@@ -28,37 +27,37 @@ OperationSuccesful:
     dw $0008,#Data09
     dw $0008,#Data10
     dw $0008,#Data11
-    dw $000f,#Data12
-
-    dw $0008,#Data13
+    dw $0008,#Data12
+	dw $0008,#Data13
+	
     dw $0008,#Data14
+	
     dw $000f,#Data15
 
     dw $f3b0
-    dw $000f,#Data15
+    dw $0008,#Data15
 
     dw $94bc
-    dw $ebcf
+    dw $ebcb ; Data15 pointer after $f3b0
 
 ;;------------------------------------------------------------------------------
 ;; COMPLETED SUCCESFULLY - POINTERS
 ;;------------------------------------------------------------------------------
 
 ;org $8bebd7
-    dw $0008,#Data16
-    dw $0008,#Data17
-    dw $0008,#Data18
-    dw $0008,#Data19
     dw $0008,#Data20
     dw $0008,#Data21
     dw $0008,#Data22
     dw $0008,#Data23
-    dw $000f,#Data24
+    dw $000e,#Data24
 
-    dw $0008,#Data25
+    dw $0001,#Data25
+	
     dw $0008,#Data26
-    dw $0008,#Data27
-    dw $0008,#Data28
+    dw $000e,#Data27
+	
+    dw $0001,#Data28
+	
     dw $0008,#Data29
     dw $0008,#Data30
     dw $0008,#Data31
@@ -72,35 +71,45 @@ OperationSuccesful:
     dw $0008,#Data36
 
     dw $94bc
-    dw $ec2d
+    dw $ec13 ; Data36 pointer after $f3ce
 
 ;;------------------------------------------------------------------------------
 ;; CLEAR TIME - POINTERS
+;; NOTES:
+;; org $8bec35 ; CLEAR TIME Data POINTERS - Manual input 
+;;------------------------------------------------------------------------------
+org $8bef01
+	dw #ClearTime
+	
+org $8bec41 ; Set Input
+ClearTime:
+    dw $0008,#Data40 
+    dw $0008,#Data41 
+    dw $0008,#Data42 
+    dw $0008,#Data43 
+    dw $0008,#Data44 
+    dw $000c,#Data45 
+	
+warnpc $8bec60
+
+;;------------------------------------------------------------------------------
+;; TIMER - POINTERS
 ;;------------------------------------------------------------------------------
 
-;org $8bec35
-    dw $0008,#Data37
-    dw $0008,#Data38
-    dw $0008,#Data39
-    dw $0008,#Data40
-    dw $000f,#Data41
+org $8bec81
 
-    dw $0008,#Data42
-    dw $0008,#Data43
-    dw $0008,#Data44
-    dw $000f,#Data45
-
-    dw $f41b
-    dw $0008,#Data45,$f424
-    dw $0008,#Data45,$f42d
-    dw $0008,#Data45,$f436
-    dw $0008,#Data45,$f43f
-    dw $0008,#Data45,$f448
-    dw $000f,#Data45
-
-    dw $94bc
-    dw $ec79
-
+	dw $0008,#Timer0,$94bc,$ec81
+	dw $0008,#Timer1,$94bc,$ec89
+	dw $0008,#Timer2,$94bc,$ec91
+	dw $0008,#Timer3,$94bc,$ec99
+	dw $0008,#Timer4,$94bc,$eca1
+	dw $0008,#Timer5,$94bc,$eca9
+	dw $0008,#Timer6,$94bc,$ecb1
+	dw $0008,#Timer7,$94bc,$ecb9
+	dw $0008,#Timer8,$94bc,$ecc1
+	dw $0008,#Timer9,$94bc,$ecc9
+	dw $0008,#TimerColon,$94bc,$ecd1
+	
 ;;------------------------------------------------------------------------------
 ;; SPRITE DATA
 ;;
@@ -126,106 +135,130 @@ warnpc $8c0000
 ;;------------------------------------------------------------------------------
 
 org $8ca69d
-Data01:
-    %endText($01b8,$f8,'L')
+
 Data02:
-    %endText($01b8,$f8,'L','^')
+    %endText($01c8,$f8,'L')
 Data03:
-    %endText($01b8,$f8,'L','^','O')
+    %endText($01c8,$f8,'L','^')
 Data04:
-    %endText($01b8,$f8,'L','^','O','P',' ')
+    %endText($01c8,$f8,'L','^','O')
 Data05:
-    %endText($01b8,$f8,'L','^','O','P','E',' ')
+    %endText($01c8,$f8,'L','^','O','P')
 Data06:
-    %endText($01b8,$f8,'L','^','O','P','E','R',' ')
+    %endText($01c8,$f8,'L','^','O','P','E')
 Data07:
-    %endText($01b8,$f8,'L','^','O','P','E','R','A',' ')
+    %endText($01c8,$f8,'L','^','O','P','E','R')
 Data08:
-    %endText($01b8,$f8,'L','^','O','P','E','R','A','Z',' ')
+    %endText($01c8,$f8,'L','^','O','P','E','R','A')
 Data09:
-    %endText($01b8,$f8,'L','^','O','P','E','R','A','Z','I',' ')
+    %endText($01c8,$f8,'L','^','O','P','E','R','A','Z')
 Data10:
-    %endText($01b8,$f8,'L','^','O','P','E','R','A','Z','I','O',' ')
+    %endText($01c8,$f8,'L','^','O','P','E','R','A','Z','I')
 Data11:
-    %endText($01b8,$f8,'L','^','O','P','E','R','A','Z','I','O','N',' ')
+    %endText($01c8,$f8,'L','^','O','P','E','R','A','Z','I','O')
 Data12:
-    %endText($01b8,$f8,'L','^','O','P','E','R','A','Z','I','O','N','E',' ')
+    %endText($01c8,$f8,'L','^','O','P','E','R','A','Z','I','O','N')
 Data13:
-    %endText($01b8,$f8,'L','^','O','P','E','R','A','Z','I','O','N','E',' ','e',' ')
+    %endText($01c8,$f8,'L','^','O','P','E','R','A','Z','I','O','N','E')
 Data14:
-    %endText($01b8,$f8,'L','^','O','P','E','R','A','Z','I','O','N','E',' ','e',' ',' ')
+    %endText($01c8,$f8,'L','^','O','P','E','R','A','Z','I','O','N','E',' ')
 Data15:
-    %endText($01b8,$f8,'L','^','O','P','E','R','A','Z','I','O','N','E',' ','e',' ',' ',' ')
+    %endText($01c8,$f8,'L','^','O','P','E','R','A','Z','I','O','N','E',' ','e')
 
 ;;------------------------------------------------------------------------------
 ;; COMPLETED SUCCESFULLY - SPRITE DATA
 ;;------------------------------------------------------------------------------
-Data16:
-    %endText($01a8,$10,'S')
-Data17:
-    %endText($01a8,$10,'S','T')
-Data18:
-    %endText($01a8,$10,'S','T','A')
-Data19:
-    %endText($01a8,$10,'S','T','A','T')
+
 Data20:
-    %endText($01a8,$10,'S','T','A','T','A')
+    %endText($01b8,$10,'S')
 Data21:
-    %endText($01a8,$10,'S','T','A','T','A',' ')
+    %endText($01b8,$10,'S','T')
 Data22:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U')
+    %endText($01b8,$10,'S','T','A')
 Data23:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N')
+    %endText($01b8,$10,'S','T','A','T')
 Data24:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ')
+    %endText($01b8,$10,'S','T','A','T','A')
 Data25:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ')
 Data26:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U')
 Data27:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U','N')
 Data28:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U','N',' ')
 Data29:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U','N',' ','S')
 Data30:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E','S',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U','N',' ','S','U')
 Data31:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E','S','S',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C')
 Data32:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E','S','S','O',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C')
 Data33:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E','S','S','O',' ',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E')
 Data34:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E','S','S','O',' ',' ',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E','S')
 Data35:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E','S','S','O',' ',' ',' ',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E','S','S')
 Data36:
-    %endText($01a8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E','S','S','O',' ',' ',' ',' ',' ')
+    %endText($01b8,$10,'S','T','A','T','A',' ','U','N',' ','S','U','C','C','E','S','S','O')
 
 ;;------------------------------------------------------------------------------
 ;; CLEAR TIME - SPRITE DATA
+;; 
+;; NOTES:
+;; org $8cb613 ; last CLEAR TIME POINTER
 ;;------------------------------------------------------------------------------
-Data37:
-    %endText($01c0,$f8,' ')
-Data38:
-    %endText($01c0,$f8,' ',' ')
-Data39:
-    %endText($01c0,$f8,' ',' ','D')
-Data40:
-    %endText($01c0,$f8,' ',' ','D','U')
-Data41:
-    %endText($01c0,$f8,' ',' ','D','U','R')
-Data42:
-    %endText($01c0,$f8,' ',' ','D','U','R','A',' ')
-Data43:
-    %endText($01c0,$f8,' ',' ','D','U','R','A','T',' ')
-Data44:
-    %endText($01c0,$f8,' ',' ','D','U','R','A','T','A',' ')
-Data45:
-    %endText($01c0,$f8,' ',' ','D','U','R','A','T','A',' ',' ')
 
-warnpc $8CB66F
+Data40:
+    %endText($01d0,$f8,'D')
+Data41:
+    %endText($01d0,$f8,'D','U')
+Data42:
+    %endText($01d0,$f8,'D','U','R')
+Data43:
+    %endText($01d0,$f8,'D','U','R','A')
+Data44:
+    %endText($01d0,$f8,'D','U','R','A','T')
+Data45:
+    %endText($01d0,$f8,'D','U','R','A','T','A')
+	
+org $8cb613
+    %endText($01d0,$f8,'D','U','R','A','T','A')
+	
+warnpc $8CB66f
+
+;;------------------------------------------------------------------------------
+;; TIMER - SPRITE DATA
+;;------------------------------------------------------------------------------
+
+org $8CB66f
+
+TimerColon:
+	%endText($01ec,$f8,':')
+Timer0:
+	%endText($01ec,$f8,'0')
+Timer1:
+	%endText($01ec,$f8,'1')
+Timer2:
+	%endText($01ec,$f8,'2')
+Timer3:
+	%endText($01ec,$f8,'3')
+Timer4:
+	%endText($01ec,$f8,'4')
+Timer5:
+	%endText($01ec,$f8,'5')
+Timer6:
+	%endText($01ec,$f8,'6')
+Timer7:
+	%endText($01ec,$f8,'7')
+Timer8:
+	%endText($01ec,$f8,'8')
+Timer9:
+	%endText($01ec,$f8,'9')
+
+
 
 ;;------------------------------------------------------------------------------
 ;; CREDITS
@@ -280,7 +313,7 @@ ItemsI:
 ItemsL:
     dw $88b7,$0101,$3c0b
 Itemse:
-    dw $88b7,$0101,$3c5d ; accent
+    dw $88b7,$0201,$3c5d,$3c6d ; accent
 ItemsN:
     dw $88b7,$0101,$3c0d
 ItemsO:
@@ -295,8 +328,6 @@ ItemsU:
     dw $88b7,$0101,$3c14
 ItemsD:
     dw $88b7,$0101,$3c03
-Items_:
-    dw $88b7,$0101,$207f
 
 ;;------------------------------------------------------------------------------
 ;; SEE YOU NEXT MISSION
@@ -340,39 +371,44 @@ org $8cfa00
 ItemsRate:
     dw $0040,$0000,$e12f
 
-    dw $0004,$0a07,#ItemsP
-    dw $0004,$0a08,#ItemsE
-    dw $0004,$0a09,#ItemsR
-    dw $0004,$0a0a,#ItemsC
-    dw $0004,$0a0b,#ItemsE
-    dw $0004,$0a0c,#ItemsN
-    dw $0004,$0a0d,#ItemsT
-    dw $0004,$0a0e,#ItemsU
-    dw $0004,$0a0f,#ItemsA
-    dw $0004,$0a10,#ItemsL
-    dw $0004,$0a11,#ItemsE
-    dw $0004,$0a13,#ItemsD
-    dw $0004,$0a14,#ItemsE
-    dw $0004,$0a15,#ItemsG
-    dw $0004,$0a16,#ItemsL
-    dw $0004,$0a17,#ItemsI
+    dw $0004,$0a06,#ItemsL
+    dw $0004,$0a07,#ItemsA
+	
+    dw $0004,$0a09,#ItemsP
+    dw $0004,$0a0a,#ItemsE
+    dw $0004,$0a0b,#ItemsR
+    dw $0004,$0a0c,#ItemsC
+    dw $0004,$0a0d,#ItemsE
+    dw $0004,$0a0e,#ItemsN
+    dw $0004,$0a0f,#ItemsT
+    dw $0004,$0a10,#ItemsU
+    dw $0004,$0a11,#ItemsA
+    dw $0004,$0a12,#ItemsL
+    dw $0004,$0a13,#ItemsE
+	
+    dw $0004,$0a15,#ItemsD
+    dw $0004,$0a16,#ItemsE
+    dw $0004,$0a17,#ItemsG
+    dw $0004,$0a18,#ItemsL
+    dw $0004,$0a19,#ItemsI
     
-    dw $0004,$0c08,#ItemsO
+    dw $0004,$0c07,#ItemsO
+    dw $0004,$0c08,#ItemsG
     dw $0004,$0c09,#ItemsG
-    dw $0004,$0c0a,#ItemsG
-    dw $0004,$0c0b,#ItemsE
+    dw $0004,$0c0a,#ItemsE
+    dw $0004,$0c0b,#ItemsT
     dw $0004,$0c0c,#ItemsT
-    dw $0004,$0c0d,#ItemsT
-    dw $0004,$0c0e,#ItemsI
-    dw $0004,$0c10,#ItemsR
-    dw $0004,$0c11,#ItemsA
+    dw $0004,$0c0d,#ItemsI
+	
+    dw $0004,$0c0f,#ItemsR
+    dw $0004,$0c10,#ItemsA
+    dw $0004,$0c11,#ItemsC
     dw $0004,$0c12,#ItemsC
-    dw $0004,$0c13,#ItemsC
-    dw $0004,$0c14,#ItemsO
-    dw $0004,$0c15,#ItemsL
-    dw $0004,$0c16,#ItemsT
-    dw $0004,$0c17,#ItemsI
-    dw $0004,$0b17,#Itemse
+    dw $0004,$0c13,#ItemsO
+    dw $0004,$0c14,#ItemsL
+    dw $0004,$0c15,#ItemsT
+    dw $0004,$0c16,#ItemsI
+    dw $0004,$0b18,#Itemse ; accent letter must be on 0b value instead 0c 
 
     dw $e627
     dw $e769
@@ -384,25 +420,27 @@ ItemsRate:
 NextMission:
     dw $0040,$0000,$e12f
 
-    dw $0004,$0204,#MissionA
-    dw $0004,$0205,#MissionL
+    dw $0004,$0205,#MissionA
     dw $0004,$0206,#MissionL
-    dw $0004,$0207,#MissionA
-    dw $0004,$0209,#MissionP
-    dw $0004,$020a,#MissionR
-    dw $0004,$020b,#MissionO
-    dw $0004,$020c,#MissionS
+    dw $0004,$0207,#MissionL
+    dw $0004,$0208,#MissionA
+	
+    dw $0004,$020a,#MissionP
+    dw $0004,$020b,#MissionR
+    dw $0004,$020c,#MissionO
     dw $0004,$020d,#MissionS
-    dw $0004,$020e,#MissionI
-    dw $0004,$020f,#MissionM
-    dw $0004,$0210,#MissionA
-    dw $0004,$0212,#MissionM
-    dw $0004,$0213,#MissionI
-    dw $0004,$0214,#MissionS
+    dw $0004,$020e,#MissionS
+    dw $0004,$020f,#MissionI
+    dw $0004,$0210,#MissionM
+    dw $0004,$0211,#MissionA
+	
+    dw $0004,$0213,#MissionM
+    dw $0004,$0214,#MissionI
     dw $0004,$0215,#MissionS
-    dw $0004,$0216,#MissionI
-    dw $0004,$0217,#MissionO
-    dw $0004,$0218,#MissionN
-    dw $0004,$0219,#MissionE
+    dw $0004,$0216,#MissionS
+    dw $0004,$0217,#MissionI
+    dw $0004,$0218,#MissionO
+    dw $0004,$0219,#MissionN
+    dw $0004,$021a,#MissionE
 
     dw $9698
