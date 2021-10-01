@@ -371,26 +371,23 @@ org $8cfa00
 ItemsRate:
     dw $0040,$0000,$e12f
 
-    dw $0004,$0a06,#ItemsL
-    dw $0004,$0a07,#ItemsA
+    dw $0004,$0a08,#ItemsL
+    dw $0004,$0a09,#ItemsA
 	
-    dw $0004,$0a09,#ItemsP
-    dw $0004,$0a0a,#ItemsE
-    dw $0004,$0a0b,#ItemsR
-    dw $0004,$0a0c,#ItemsC
-    dw $0004,$0a0d,#ItemsE
-    dw $0004,$0a0e,#ItemsN
-    dw $0004,$0a0f,#ItemsT
-    dw $0004,$0a10,#ItemsU
-    dw $0004,$0a11,#ItemsA
-    dw $0004,$0a12,#ItemsL
-    dw $0004,$0a13,#ItemsE
+    dw $0004,$0a0b,#ItemsP
+    dw $0004,$0a0c,#ItemsE
+    dw $0004,$0a0d,#ItemsR
+    dw $0004,$0a0e,#ItemsC
+    dw $0004,$0a0f,#ItemsE
+    dw $0004,$0a10,#ItemsN
+    dw $0004,$0a11,#ItemsT
+    dw $0004,$0a12,#ItemsU
+    dw $0004,$0a13,#ItemsA
+    dw $0004,$0a14,#ItemsL
+    dw $0004,$0a15,#ItemsE
 	
-    dw $0004,$0a15,#ItemsD
-    dw $0004,$0a16,#ItemsE
-    dw $0004,$0a17,#ItemsG
-    dw $0004,$0a18,#ItemsL
-    dw $0004,$0a19,#ItemsI
+    dw $0004,$0a17,#ItemsD
+    dw $0004,$0a18,#ItemsI
     
     dw $0004,$0c07,#ItemsO
     dw $0004,$0c08,#ItemsG
