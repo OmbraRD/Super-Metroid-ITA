@@ -731,17 +731,32 @@ warnpc $82ff00 ; suit_menu.asm adds data after this address
 ;; 3. SPC program data?
 ;;------------------------------------------------------------------------------
 
-;Pointers
+; Pointers
 org $8fe820
-    dl #$dcaf6c
-    dl #$dcfac7
+    dl #IntroSPC1 ; #$dcaf6c
+    dl #IntroSPC2 ; #$dcfac7
 
-; SPC "The Last Metroid / Is In Captivity" | 2128 BRR blocks
+; SPC "The Last Metroid" | 1076 BRR blocks
 org $dcaf6c
-    
-; SPC "The Galaxy / Is At Peace..." | 1528 BRR blocks
-org $dcfac7
+    IntroSPC1:
+    incbin "../audio/2E2F84_intro_1a.brr"
+warnpc $dcd558
 
+; SPC "Is In Captivity" | 1052 BRR blocks
+org $dcd558
+    incbin "../audio/2E5558_intro_1b.brr"
+
+
+; SPC "The Galaxy" | 718 BRR blocks
+org $dcfac7
+    IntroSPC2:
+    incbin "../audio/2E7ADF_intro_2a.brr"
+    
+; SPC "Is At Peace..." | 810 BRR blocks
+org $dd941d
+    incbin "../audio/2E941D_intro_2b.brr"
+    
+    
 ;;------------------------------------------------------------------------------
 ;; INTRO TEXT - TILEMAP (COMPRESSED)
 ;;------------------------------------------------------------------------------
