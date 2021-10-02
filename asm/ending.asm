@@ -306,14 +306,16 @@ ItemsE:
     dw $88b7,$0101,$3c04
 ItemsP:
     dw $88b7,$0101,$3c0f
-ItemsG:
-    dw $88b7,$0101,$3c06
+ItemsZ:
+    dw $88b7,$0101,$3c19
 ItemsI:
     dw $88b7,$0101,$3c08
 ItemsL:
     dw $88b7,$0101,$3c0b
-Itemse:
-    dw $88b7,$0201,$3c5d,$3c6d ; accent
+ItemsB:
+    dw $88b7,$0101,$3c01
+ItemsColon:
+	dw $88b7,$0101,$3c1e
 ItemsN:
     dw $88b7,$0101,$3c0d
 ItemsO:
@@ -370,42 +372,46 @@ org $8cfa00
 ;org $8cdfdb
 ItemsRate:
     dw $0040,$0000,$e12f
+	
+    dw $0004,$0a09,#ItemsP
+    dw $0004,$0a0a,#ItemsE
+    dw $0004,$0a0b,#ItemsR
+    dw $0004,$0a0c,#ItemsC
+    dw $0004,$0a0d,#ItemsE
+    dw $0004,$0a0e,#ItemsN
+    dw $0004,$0a0f,#ItemsT
+    dw $0004,$0a10,#ItemsU
+    dw $0004,$0a11,#ItemsA
+    dw $0004,$0a12,#ItemsL
+    dw $0004,$0a13,#ItemsE
+	
+    dw $0004,$0a15,#ItemsD
+    dw $0004,$0a16,#ItemsI
 
-    dw $0004,$0a08,#ItemsL
-    dw $0004,$0a09,#ItemsA
+    dw $0004,$0c04,#ItemsC
+    dw $0004,$0c05,#ItemsO
+    dw $0004,$0c06,#ItemsL    
+    dw $0004,$0c07,#ItemsL
+    dw $0004,$0c08,#ItemsE
+    dw $0004,$0c09,#ItemsZ
+    dw $0004,$0c0a,#ItemsI
+    dw $0004,$0c0b,#ItemsO
+    dw $0004,$0c0c,#ItemsN
+    dw $0004,$0c0d,#ItemsA
+    dw $0004,$0c0e,#ItemsB
+    dw $0004,$0c0f,#ItemsI
+    dw $0004,$0c10,#ItemsL
+    dw $0004,$0c11,#ItemsI
 	
-    dw $0004,$0a0b,#ItemsP
-    dw $0004,$0a0c,#ItemsE
-    dw $0004,$0a0d,#ItemsR
-    dw $0004,$0a0e,#ItemsC
-    dw $0004,$0a0f,#ItemsE
-    dw $0004,$0a10,#ItemsN
-    dw $0004,$0a11,#ItemsT
-    dw $0004,$0a12,#ItemsU
-    dw $0004,$0a13,#ItemsA
-    dw $0004,$0a14,#ItemsL
-    dw $0004,$0a15,#ItemsE
-	
-    dw $0004,$0a17,#ItemsD
-    dw $0004,$0a18,#ItemsI
-    
-    dw $0004,$0c07,#ItemsO
-    dw $0004,$0c08,#ItemsG
-    dw $0004,$0c09,#ItemsG
-    dw $0004,$0c0a,#ItemsE
-    dw $0004,$0c0b,#ItemsT
-    dw $0004,$0c0c,#ItemsT
-    dw $0004,$0c0d,#ItemsI
-	
-    dw $0004,$0c0f,#ItemsR
-    dw $0004,$0c10,#ItemsA
-    dw $0004,$0c11,#ItemsC
-    dw $0004,$0c12,#ItemsC
-    dw $0004,$0c13,#ItemsO
-    dw $0004,$0c14,#ItemsL
-    dw $0004,$0c15,#ItemsT
-    dw $0004,$0c16,#ItemsI
-    dw $0004,$0b18,#Itemse ; accent letter must be on 0b value instead 0c 
+    dw $0004,$0c13,#ItemsR
+    dw $0004,$0c14,#ItemsA
+    dw $0004,$0c15,#ItemsC
+    dw $0004,$0c16,#ItemsC
+    dw $0004,$0c17,#ItemsO
+    dw $0004,$0c18,#ItemsL
+    dw $0004,$0c19,#ItemsT
+    dw $0004,$0c1a,#ItemsI
+    dw $0004,$0c1b,#ItemsColon
 
     dw $e627
     dw $e769
