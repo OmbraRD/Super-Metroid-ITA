@@ -7,6 +7,8 @@ set GFX="gfx"
 set TILEMAP="tilemaps"
 set LCCMP="tools\Lunar Compress\recomp.exe"
 set ASAR="tools\asar.exe"
+set AUDIO_ITA="audio_ita"
+set BRRENC="tools\brr_encoder.exe"
 rem ----------------------------------------------------------------------------
 
 rem ----------------------------------------------------------------------------
@@ -30,6 +32,14 @@ echo Compressing Tilemaps...
 %LCCMP% %TILEMAP%\menu\0B938D_special_setting_ENG.tilemap %TILEMAP%\compressed\special_setting_ENG.bin 0 4 0
 %LCCMP% %TILEMAP%\menu\0B953A_special_setting_JAP.tilemap %TILEMAP%\compressed\special_setting_JAP.bin 0 4 0
 %LCCMP% %TILEMAP%\ending\0BEEFF_credits.tilemap %TILEMAP%\compressed\credits.bin 0 4 0
+
+echo.
+echo Encoding Audio Data...
+%BRRENC% -sb15456 %AUDIO_ITA%\2E2F84_intro_1a_ITA.wav %AUDIO_ITA%\2E2F84_intro_1a_ITA.brr 
+%BRRENC% -sb15456 %AUDIO_ITA%\2E5558_intro_1b_ITA.wav %AUDIO_ITA%\2E5558_intro_1b_ITA.brr 
+%BRRENC% -sb15456 %AUDIO_ITA%\2E7ADF_intro_2a_ITA.wav %AUDIO_ITA%\2E7ADF_intro_2a_ITA.brr 
+%BRRENC% -sb15456 %AUDIO_ITA%\2E941D_intro_2b_ITA.wav %AUDIO_ITA%\2E941D_intro_2b_ITA.brr 
+
 
 echo.
 echo Applying hacks...
