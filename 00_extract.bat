@@ -4,10 +4,15 @@ set ROM="rom\Super Metroid (JU) [!].smc"
 rem ----------------------------------------------------------------------------
 set GFX="gfx"
 set TILEMAP="tilemaps"
+set AUDIO="audio"
+set AUDIO_ITA="audio_ita"
+
 rem ----------------------------------------------------------------------------
 set LCDEC="tools\Lunar Compress\decomp.exe"
 set DD="tools\dd.exe"
 set PALEX="tools\snespalex.exe"
+set BRRDEC="tools\brr_decoder.exe"
+
 rem ----------------------------------------------------------------------------
 
 rem ----------------------------------------------------------------------------
@@ -17,6 +22,9 @@ if not exist "%TILEMAP%\menu\" mkdir %TILEMAP%\menu\
 if not exist "%TILEMAP%\gameover\" mkdir %TILEMAP%\gameover\
 if not exist "%TILEMAP%\suit\" mkdir %TILEMAP%\suit\
 if not exist "%TILEMAP%\ending\" mkdir %TILEMAP%\ending\
+if not exist "%AUDIO%" mkdir %AUDIO%
+if not exist "%AUDIO_ITA%" mkdir %AUDIO_ITA%
+
 rem ----------------------------------------------------------------------------
 
 rem ----------------------------------------------------------------------------
@@ -107,6 +115,23 @@ echo Extracting Uncompressed Tilemaps...
 %DD% skip=1796352 count=4096 if=%ROM% of=%TILEMAP%\suit\1B6900_suit_menu.tilemap bs=1 2>NUL
 
 %DD% skip=416923 count=576 if=%ROM% of=%TILEMAP%\ending\065C9B_produced_by.tilemap bs=1 2>NUL
+
+rem ----------------------------------------------------------------------------
+echo Extracting Audio Data...
+%DD% skip=3026820 count=9684 if=%ROM% of=%AUDIO%\2E2F84_intro_1a.brr bs=1 2>NUL
+%DD% skip=3036504 count=9468 if=%ROM% of=%AUDIO%\2E5558_intro_1b.brr bs=1 2>NUL
+REM %DD% skip=3045972 count=115 if=%ROM% of=%AUDIO%\2E7A5E_intro_1_footer.bin bs=1 2>NUL
+REM %DD% skip=3046087 count=20 if=%ROM% of=%AUDIO%\2E7AC7_intro_2_header.bin bs=1 2>NUL
+%DD% skip=3046111 count=6462 if=%ROM% of=%AUDIO%\2E7ADF_intro_2a.brr bs=1 2>NUL
+%DD% skip=3052573 count=7290 if=%ROM% of=%AUDIO%\2E941D_intro_2b.brr bs=1 2>NUL
+REM %DD% skip=3059863 count=109 if=%ROM% of=%AUDIO%\2EB097_intro2_footer.bin bs=1 2>NUL
+
+rem ----------------------------------------------------------------------------
+echo Decoding Audio Data...
+%BRRDEC% -s15456 %AUDIO%\2E2F84_intro_1a.brr %AUDIO%\2E2F84_intro_1a.wav 1>NUL
+%BRRDEC% -s15456 %AUDIO%\2E5558_intro_1b.brr %AUDIO%\2E5558_intro_1b.wav 1>NUL
+%BRRDEC% -s15456 %AUDIO%\2E7ADF_intro_2a.brr %AUDIO%\2E7ADF_intro_2a.wav 1>NUL
+%BRRDEC% -s15456 %AUDIO%\2E941D_intro_2b.brr %AUDIO%\2E941D_intro_2b.wav 1>NUL
 
 rem ----------------------------------------------------------------------------
 echo Extracting Compressed Tilemaps...
