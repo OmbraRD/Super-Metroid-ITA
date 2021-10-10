@@ -754,7 +754,7 @@ org $dcfadf
 ;warnpc $dd941d
 
 ; SPC "Is At Peace..." | 810 BRR blocks
-;org $dd941d
+org $dd941d
     incbin "../audio_ita/2E941D_intro_2b_ITA.brr"
 warnpc $ddb097
 
