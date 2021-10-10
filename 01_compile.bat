@@ -35,10 +35,10 @@ echo Compressing Tilemaps...
 
 echo.
 echo Encoding Audio Data...
-%BRRENC% -sb15456 %AUDIO_ITA%\2E2F84_intro_1a_ITA.wav %AUDIO_ITA%\2E2F84_intro_1a_ITA.brr 
-%BRRENC% -sb15456 %AUDIO_ITA%\2E5558_intro_1b_ITA.wav %AUDIO_ITA%\2E5558_intro_1b_ITA.brr 
-%BRRENC% -sb15456 %AUDIO_ITA%\2E7ADF_intro_2a_ITA.wav %AUDIO_ITA%\2E7ADF_intro_2a_ITA.brr 
-%BRRENC% -sb15456 %AUDIO_ITA%\2E941D_intro_2b_ITA.wav %AUDIO_ITA%\2E941D_intro_2b_ITA.brr 
+%BRRENC% -sb14617 %AUDIO_ITA%\2E2F84_intro_1a_ITA.wav %AUDIO_ITA%\2E2F84_intro_1a_ITA.brr 
+%BRRENC% -sb14617 %AUDIO_ITA%\2E5558_intro_1b_ITA.wav %AUDIO_ITA%\2E5558_intro_1b_ITA.brr 
+%BRRENC% -sb14617 %AUDIO_ITA%\2E7ADF_intro_2a_ITA.wav %AUDIO_ITA%\2E7ADF_intro_2a_ITA.brr 
+%BRRENC% -sb14617 %AUDIO_ITA%\2E941D_intro_2b_ITA.wav %AUDIO_ITA%\2E941D_intro_2b_ITA.brr 
 
 
 echo.
