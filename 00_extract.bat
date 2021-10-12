@@ -128,10 +128,10 @@ REM %DD% skip=3059863 count=109 if=%ROM% of=%AUDIO%\2EB097_intro2_footer.bin bs=
 
 rem ----------------------------------------------------------------------------
 echo Decoding Audio Data...
-%BRRDEC% -s15456 %AUDIO%\2E2F84_intro_1a.brr %AUDIO%\2E2F84_intro_1a.wav 1>NUL
-%BRRDEC% -s15456 %AUDIO%\2E5558_intro_1b.brr %AUDIO%\2E5558_intro_1b.wav 1>NUL
-%BRRDEC% -s15456 %AUDIO%\2E7ADF_intro_2a.brr %AUDIO%\2E7ADF_intro_2a.wav 1>NUL
-%BRRDEC% -s15456 %AUDIO%\2E941D_intro_2b.brr %AUDIO%\2E941D_intro_2b.wav 1>NUL
+%BRRDEC% -s14400 %AUDIO%\2E2F84_intro_1a.brr %AUDIO%\2E2F84_intro_1a.wav 1>NUL
+%BRRDEC% -s14400 %AUDIO%\2E5558_intro_1b.brr %AUDIO%\2E5558_intro_1b.wav 1>NUL
+%BRRDEC% -s14400 %AUDIO%\2E7ADF_intro_2a.brr %AUDIO%\2E7ADF_intro_2a.wav 1>NUL
+%BRRDEC% -s14400 %AUDIO%\2E941D_intro_2b.brr %AUDIO%\2E941D_intro_2b.wav 1>NUL
 
 rem ----------------------------------------------------------------------------
 echo Extracting Compressed Tilemaps...
