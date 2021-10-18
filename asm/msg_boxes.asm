@@ -63,6 +63,13 @@ org $85876d
        
 ;;------------------------------------------------------------------------------
 ;; MESSAGE BOXES POINTERS
+;;
+;; INFO:
+;; THE FIRST PAIR OF BYTES IS THE POINTER THAT WILL DETERMINE WHICH KIND 
+;; OF BOX MUST BE LOADED
+;;
+;; THE SECOND PAIR OF BYTE IS THE POINTER THAT WILL DETERMINE HOW WIDE THE TOP
+;; AND BOTTOM BLACK STRIP MUST BE
 ;;------------------------------------------------------------------------------
 
 org $85869b
@@ -142,7 +149,7 @@ org $85869b
     dw $8289
     dw #ReserveTankFirst
     dw $8436
-    dw $8289
+    dw #GravitySuitAccent
     dw #GravitySuit
     dw $8436
     dw $8289
@@ -254,3 +261,18 @@ SelYes2:
 ;org $859601
 SelNo:
     incbin "../tilemaps/029601_msg_boxes_save_no.tilemap"
+
+;;------------------------------------------------------------------------------
+;; GravitySuit italian accent 
+;;------------------------------------------------------------------------------
+
+org $859720
+GravitySuitAccent:
+	incbin "../tilemaps/028289_msg_boxes_stripe_code.bin"
+	
+org $859727	
+	dw #GravitySuitStripe
+	
+org $859750
+GravitySuitStripe:
+	incbin "../tilemaps/028040_msg_boxes_black_top_stripe.tilemap"
