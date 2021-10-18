@@ -97,6 +97,8 @@ echo Extracting Uncompressed Tilemaps...
 %DD% skip=37708 count=84 if=%ROM% of=%TILEMAP%\gameover\00934C_gameover_YES_RETURN_TO_GAME.tilemap bs=1 2>NUL
 %DD% skip=37792 count=72 if=%ROM% of=%TILEMAP%\gameover\0093A0_gameover_NO_GO_TO_TITLE.tilemap bs=1 2>NUL
 
+%DD% skip=163904 count=64 if=%ROM% of=%TILEMAP%\028040_msg_boxes_black_top_sprite.tilemap bs=1 2>NUL
+%DD% skip=164482 count=47 if=%ROM% of=%TILEMAP%\028289_msg_boxes_stripe_code.bin bs=1 2>NUL
 %DD% skip=165887 count=3584 if=%ROM% of=%TILEMAP%\0287FF_msg_boxes.tilemap bs=1 2>NUL
 %DD% skip=169345 count=64 if=%ROM% of=%TILEMAP%\029581_msg_boxes_save_yes1.tilemap bs=1 2>NUL
 %DD% skip=169409 count=64 if=%ROM% of=%TILEMAP%\0295C1_msg_boxes_save_yes2.tilemap bs=1 2>NUL
