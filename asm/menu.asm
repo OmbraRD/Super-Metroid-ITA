@@ -732,62 +732,120 @@ warnpc $82ff00 ; suit_menu.asm adds data after this address
 ;;------------------------------------------------------------------------------
 
 ; Pointers
-org $8fe820
+;org $8fe820
 ;    dl #$dcaf6c ; BRR Header
 org $8fe823
-;    dl #TheGalaxy ; BRR Header
+    dl #TheGalaxy ; BRR Header
+	
+;;------------------------------------------------------------------------------
+;; INFRID VERSION
+;;------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------
+; The Last Metroid is in captivity
+;
+; Notes:
+; SPC "The Last Metroid" | 1076 BRR blocks
+; SPC "Is In Captivity" | 1052 BRR blocks
+; 
+; Inside 2EB097_The Galaxy_Footer.bin
+; -address 0x0064 hex value 36 ; Pause Dialog Lenght
+;-------------------------------------------------------------------------------
 
-check bankcross off
+;check bankcross off
+;org $dcaf72
+;	dw $d376,$d376 ; 2E558_intro_1b_ITA BRR S-APU bus address
 
 ;org $dcaf80
-;	dw $4ada 
+;	dw $3973
+
+;org $dcaf84
+;	incbin "../audio_ita/Infrid_Audio/2E2F84_intro_1a_ITA.brr" ; The Last Metroid BRR
+;	incbin "../audio_ita/Infrid_Audio/2E5558_intro_1b_ITA.brr" ; Is In Captivity BRR
+;	incbin "../audio_ita/Bin_data/2E7A54_intro_1_Footer_ITA.bin" ; Footer
 	
-; SPC "The Last Metroid" | 1076 BRR blocks
-org $dcaf84
-    incbin "../audio_ita/2E2F84_intro_1a_ITA.brr"
-;warnpc $dcd558
-
-; SPC "Is In Captivity" | 1052 BRR blocks
-org $dcd558
-    incbin "../audio_ita/2E5558_intro_1b_ITA.brr"
-warnpc $dcfa54
-
-;"The Last Metroid Is In Captivity" Footer
-;	db $ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$ff,$0c,$00,$90,$6c,$18,$ff
-;	db $e0,$b8,$03,$b0,$19,$ff,$e0,$b8,$03,$a0,$18,$00,$00,$58,$32,$65
-;	db $7f,$98,$b2,$cb,$e5,$fc,$19,$32,$4c,$65,$72,$7f,$8c,$98,$a5,$b2
-;	db $bf,$cb,$d8,$e5,$f2,$fc,$35,$00,$28,$58,$2a,$58,$2e,$58,$00,$00
-;	db $3e,$58,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-;	db $fa,$1a,$e7,$15,$e5,$e6,$e0,$18,$f4,$00,$ed,$e6,$f5,$01,$1e,$1e
-;	db $f7,$02,$3c,$00
-
-org $dcfab8	
-	db $36 ; Pause dialog lenght
-	
-;	db $7f,$a3,$e0,$19,$f4,$00,$60,$a3,$00,$00,$00,$00,$00,$15
-
-;"The Galaxy Is At Peace" Header
-;TheGalaxy:
-;	db $10,$00,$60,$6d,$16,$b5,$54,$ce,$54,$ce,$ce,$ea,$ff,$ff,$ff,$ff
-;	db $ff,$ff,$ff,$ff
-	
-;	dw $35ba ;Hex BRR bytes value
-	
-;	db $16,$b5
-
-
+;-------------------------------------------------------------------------------
+; The Galaxy is at peace...
+;
+; Notes:
 ; SPC "The Galaxy" | 718 BRR blocks
-org $dcfadf
-    incbin "../audio_ita/2E7ADF_intro_2a_ITA.brr"
-;warnpc $dd941d
-
 ; SPC "Is At Peace..." | 810 BRR blocks
-;org $dd941d
-    incbin "../audio_ita/2E941D_intro_2b_ITA.brr"
-warnpc $ddb097
+; 
+; Inside 2E7AC7_intro_2_Header_ITA.bin
+; -address 0x0006 $cc92,$cc92 ; 2E941D_intro_2b_ITA BRR S-APU address
+; -address 0x0014 $311f ; Bytes Readed In Hex value 
+;
+; Inside 2EB097_intro_2_Footer_ITA.bin
+; -address 0x005C hex value 38 ; Pause Dialog Lenght
+; 
+;-------------------------------------------------------------------------------
 
+;TheGalaxy:
+;	incbin "../audio_ita/Bin_data/2E7AC7_intro_2_Header_ITA.bin" ; Header
+;	incbin "../audio_ita/Infrid_Audio/2E7ADF_intro_2a_ITA.brr" ; The Galaxy BRR
+;	incbin "../audio_ita/Infrid_Audio/2E941D_intro_2b_ITA.brr" ; Is At Peace... BRR
+;	incbin "../audio_ita/Bin_data/2EB097_intro_2_Footer_ITA.bin" ; Footer
+
+
+;warnpc $ddb097
+
+;check bankcross on
+
+;;------------------------------------------------------------------------------
+;; DUBBER VERSION
+;;------------------------------------------------------------------------------
+;-------------------------------------------------------------------------------
+; The Last Metroid is in captivity
+;
+; Notes:
+; SPC "The Last Metroid" | 1076 BRR blocks
+; SPC "Is In Captivity" | 1052 BRR blocks
+; 
+; Inside 2EB097_The Galaxy_Footer.bin
+; -address 0x0064 hex value 36 ; Pause Dialog Lenght
+;-------------------------------------------------------------------------------
+
+check bankcross off
+	
+org $dcaf72
+	dw $db05,$db05 ; vive_in_cattivita S-APU bus address
+	
+
+org $dcaf84
+	incbin "../audio_ita/Dubber_audio/metroid_l_ultimo_metroid.brr" ; The Last Metroid BRR
+	incbin "../audio_ita/Dubber_audio/metroid_vive_in_cattivita.brr" ; Is In Captivity BRR
+	incbin "../audio_ita/Bin_data/2E7A54_Last_Metroid_Footer.bin" ; Footer
+	
+
+;-------------------------------------------------------------------------------
+; The Galaxy is at peace...
+;
+; Notes:
+; SPC "The Galaxy" | 718 BRR blocks
+; SPC "Is At Peace..." | 810 BRR blocks
+; 
+; Inside 2E7AC7_The_Galaxy_Header.bin
+; -address 0x0006 $d823,d823 ; Second BRR S-APU address
+; -address 0x0014 $4331 ; Bytes Readed In Hex value 
+;
+; Inside 2EB097_The Galaxy_Footer.bin
+; -address 0x005C hex value 38 ; Pause Dialog Lenght
+; 
+; org $ceb22d - FREE SPACE 19922 bytes 
+;-------------------------------------------------------------------------------
+
+org $ceb300
+TheGalaxy:
+	incbin "../audio_ita/Bin_data/2E7AC7_The_Galaxy_Header.bin" ; Header
+	incbin "../audio_ita/Dubber_audio/metroid_nella_galassia.brr" ; The Galaxy BRR
+	incbin "../audio_ita/Dubber_audio/metroid_regna_la_pace.brr" ; Is At Peace... BRR
+	incbin "../audio_ita/Bin_data/2EB097_The_Galaxy_Footer.bin" ; Footer
+
+; Clear original BRR
+org $dcfac7
+    fillbyte $ff
+    fill 13885 
 check bankcross on
-    
+
 ;;------------------------------------------------------------------------------
 ;; INTRO TEXT - TILEMAP (COMPRESSED)
 ;;------------------------------------------------------------------------------
