@@ -23,7 +23,9 @@ if not exist "%TILEMAP%\gameover\" mkdir %TILEMAP%\gameover\
 if not exist "%TILEMAP%\suit\" mkdir %TILEMAP%\suit\
 if not exist "%TILEMAP%\ending\" mkdir %TILEMAP%\ending\
 if not exist "%AUDIO%" mkdir %AUDIO%
-if not exist "%AUDIO_ITA%" mkdir %AUDIO_ITA%
+if not exist "%AUDIO_ITA%\Infrid_audio" mkdir %AUDIO_ITA%\Infrid_audio
+if not exist "%AUDIO_ITA%\Dubber_audio" mkdir %AUDIO_ITA%\Dubber_audio
+if not exist "%AUDIO_ITA%\Bin_data" mkdir %AUDIO_ITA%\Bin_data
 
 rem ----------------------------------------------------------------------------
 
@@ -122,11 +124,11 @@ rem ----------------------------------------------------------------------------
 echo Extracting Audio Data...
 %DD% skip=3026820 count=9684 if=%ROM% of=%AUDIO%\2E2F84_intro_1a.brr bs=1 2>NUL
 %DD% skip=3036504 count=9468 if=%ROM% of=%AUDIO%\2E5558_intro_1b.brr bs=1 2>NUL
-REM %DD% skip=3045972 count=115 if=%ROM% of=%AUDIO%\2E7A5E_intro_1_footer.bin bs=1 2>NUL
-REM %DD% skip=3046087 count=20 if=%ROM% of=%AUDIO%\2E7AC7_intro_2_header.bin bs=1 2>NUL
+%DD% skip=3045972 count=115 if=%ROM% of=%AUDIO%\2E7A54_Last_Metroid_Footer.bin bs=1 2>NUL
+%DD% skip=3046087 count=24 if=%ROM% of=%AUDIO%\2E7AC7_The_Galaxy_Header.bin bs=1 2>NUL
 %DD% skip=3046111 count=6462 if=%ROM% of=%AUDIO%\2E7ADF_intro_2a.brr bs=1 2>NUL
 %DD% skip=3052573 count=7290 if=%ROM% of=%AUDIO%\2E941D_intro_2b.brr bs=1 2>NUL
-REM %DD% skip=3059863 count=109 if=%ROM% of=%AUDIO%\2EB097_intro2_footer.bin bs=1 2>NUL
+%DD% skip=3059863 count=109 if=%ROM% of=%AUDIO%\2EB097_The_Galaxy_Footer.bin bs=1 2>NUL
 
 rem ----------------------------------------------------------------------------
 echo Decoding Audio Data...
